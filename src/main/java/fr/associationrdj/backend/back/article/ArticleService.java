@@ -39,7 +39,7 @@ public class ArticleService {
             articleActuel.setUtilisateur(article.getUtilisateur());
             articleActuel.setDate_modif(article.getDate_modif());
             articleActuel.setLike_dislike(article.getLike_dislike());
-            return articleRepository.save(articleActuel);
+            return articleRepository.save(article);
         }else{
             throw new RuntimeException("Article Not-Found");
         }
