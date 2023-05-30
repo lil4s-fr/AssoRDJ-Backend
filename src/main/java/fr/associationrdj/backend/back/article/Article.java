@@ -1,7 +1,7 @@
 package fr.associationrdj.backend.back.article;
 
 import fr.associationrdj.backend.back.categorie.Categorie;
-import fr.associationrdj.backend.back.utilisateur.Utilisateur;
+import fr.associationrdj.backend.back.utilisateur.Evenement;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ public class Article {
     @ManyToOne
     private Categorie categorie;
     @ManyToOne
-    private Utilisateur utilisateur;
+    private Evenement utilisateur;
     private String titre;
     private String corps;
     private Date date_ecriture;
