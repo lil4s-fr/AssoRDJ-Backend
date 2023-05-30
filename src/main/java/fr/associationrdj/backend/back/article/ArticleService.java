@@ -30,4 +30,18 @@ public class ArticleService {
     public void deleteByid(Long id){
         articleRepository.deleteById(id);
     }
+    public Article update(Article article){
+        Article articleActuel = articleRepository.findById(article.getId()).orElse(null);
+        if (article.getId() != null){
+            articleActuel.setTitre(article.getTitre());
+            articleActuel.setCorps(article.getCorps());
+            articleActuel.setCategorie(article.getCategorie());
+            articleActuel.setUtilisateur(article.getUtilisateur());
+            articleActuel.setDate_modif(article.getDate_modif());
+            articleActuel.setLike_dislike(article.getLike_dislike());
+            return articleRepository.save(articleActuel);
+        }else{
+            throw new RuntimeException("Article Not-Found");
+        }
+    }
 }
