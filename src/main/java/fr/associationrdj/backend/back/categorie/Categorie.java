@@ -1,5 +1,6 @@
 package fr.associationrdj.backend.back.categorie;
 
+import fr.associationrdj.backend.back.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
