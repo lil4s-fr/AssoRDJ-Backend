@@ -1,7 +1,5 @@
 package fr.associationrdj.backend.back.coordonnee;
 
-import fr.associationrdj.backend.back.utilisateur.Utilisateur;
-import fr.associationrdj.backend.back.utilisateur.UtilisateurRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
