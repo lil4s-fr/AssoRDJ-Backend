@@ -1,7 +1,8 @@
 package fr.associationrdj.backend.back.article;
 
+import fr.associationrdj.backend.back.categorie.Categorie;
+import fr.associationrdj.backend.back.utilisateur.Utilisateur;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,6 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
