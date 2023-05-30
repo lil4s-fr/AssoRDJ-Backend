@@ -1,5 +1,7 @@
 package fr.associationrdj.backend.back.utilisateur;
 
+import fr.associationrdj.backend.back.categorie.Categorie;
+import fr.associationrdj.backend.back.coordonnee.Coordonnee;
 import jakarta.persistence.*;
 import jdk.jfr.Category;
 import lombok.Getter;
@@ -21,13 +23,10 @@ public class Utilisateur {
     private int numeroAdherent;
     private String pseudo;
     private String motDePasse;
-    private Coordonnees coordonnees;
+    @ManyToOne
+    private Coordonnee coordonnees;
     private Permission permission;
+    @ManyToMany
     private Categorie categorie;
-
-
-
-
-
 
 }
