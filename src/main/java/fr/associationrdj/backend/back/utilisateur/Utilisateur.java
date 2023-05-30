@@ -22,13 +22,10 @@ public class Utilisateur {
     private int numeroAdherent;
     private String pseudo;
     private String motDePasse;
+    @ManyToOne
     private Coordonnee coordonnees;
     private Permission permission;
+    @ManyToMany
     private Categorie categorie;
-
-
-
-
-
 
 }

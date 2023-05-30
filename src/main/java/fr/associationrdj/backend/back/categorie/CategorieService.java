@@ -31,7 +31,7 @@ public class CategorieService {
             categorieActuel.setNom(categorie.getNom());
             categorieActuel.setDescription(categorie.getDescription());
             categorieActuel.setReservation(categorie.getReservation());
-            return categorieRepository.save(categorieActuel);
+            return categorieRepository.save(categorie);
         }else{
             throw new RuntimeException("Categorie Not-Found");
         }
