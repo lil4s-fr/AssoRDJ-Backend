@@ -18,20 +18,20 @@ public class CoordonneeController {
     public List<Coordonnee> findAll(){
         return coordonneeService.findAll();
     }
-    @GetMapping("")
-    public Coordonnee findById(Long id){
+    @GetMapping("/{id}")
+    public Coordonnee findById(@PathVariable("id") Long id){
         return coordonneeService.findById(id);
     }
     @PostMapping("")
-    public Coordonnee save (Coordonnee coordonnee){
+    public Coordonnee save (@RequestBody Coordonnee coordonnee){
         return coordonneeService.save(coordonnee);
     }
     @PutMapping("/update")
-    public Coordonnee update(Coordonnee coordonnee){
+    public Coordonnee update(@RequestBody Coordonnee coordonnee){
         return coordonneeService.update(coordonnee);
     }
     @DeleteMapping("/{id}")
-    public void deleteById(Long id){
+    public void deleteById(@PathVariable("id") Long id){
         coordonneeService.deleteById(id);
     }
 

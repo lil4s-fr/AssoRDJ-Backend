@@ -29,7 +29,7 @@ public class DemandeContactController {
         demandeContactService.deleteById(id);
     }
     @PutMapping("/update")
-    public DemandeContact update(DemandeContact demandeContact){
+    public DemandeContact update(@RequestBody DemandeContact demandeContact){
         return demandeContactService.update(demandeContact);
     }
 }

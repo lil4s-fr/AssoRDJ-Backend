@@ -19,19 +19,19 @@ public class EvenementController {
         return evenementService.findAll();
     }
     @GetMapping("/{id}")
-    public Evenement findById(Long id){
+    public Evenement findById(@PathVariable("id") Long id){
         return evenementService.findById(id);
     }
     @PostMapping("")
-    public Evenement save(Evenement evenement){
+    public Evenement save(@RequestBody Evenement evenement){
         return evenementService.save(evenement);
     }
     @PutMapping("/update")
-    public Evenement update(Evenement utilisateur){
+    public Evenement update(@RequestBody Evenement utilisateur){
         return evenementService.update(utilisateur);
     }
     @DeleteMapping("/{id}")
-    public void deleteById(Long id){
+    public void deleteById(@PathVariable("id") Long id){
         evenementService.deleteById(id);
     }
 

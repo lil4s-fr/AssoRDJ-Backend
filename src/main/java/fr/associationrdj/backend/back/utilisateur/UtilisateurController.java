@@ -1,8 +1,6 @@
 package fr.associationrdj.backend.back.utilisateur;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,27 +15,24 @@ public class UtilisateurController {
         this.utilisateurService = utilisateurService;
     }
 
+    @GetMapping("")
     public List<Utilisateur> findAll(){
         return utilisateurService.findAll();
     }
-
-    public Utilisateur findById(Long id){
+    @GetMapping("/{id}")
+    public Utilisateur findById(@PathVariable("id") Long id){
         return utilisateurService.findById(id);
     }
-
-    public void create(Utilisateur utilisateur){
-        utilisateurService.save(utilisateur);
+    @PostMapping("")
+    public Utilisateur save(@RequestBody Utilisateur utilisateur){
+        return utilisateurService.save(utilisateur);
     }
-
-    public void save(Utilisateur utilisateur){
-        utilisateurService.save(utilisateur);
-    }
-
-    public Utilisateur update(Utilisateur utilisateur){
+    @PutMapping("")
+    public Utilisateur update(@RequestBody Utilisateur utilisateur){
         return utilisateurService.update(utilisateur);
     }
-
-    public void deleteById(Long id){
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable("id") Long id){
         utilisateurService.deleteById(id);
     }
 
