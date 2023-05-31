@@ -24,8 +24,8 @@ public class UtilisateurService {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Acteur not found"));
     }
 
-    public void save (Utilisateur utilisateur){
-        utilisateurRepository.save(utilisateur);
+    public Utilisateur save (Utilisateur utilisateur){
+        return utilisateurRepository.save(utilisateur);
     }
 
     public Utilisateur update(Utilisateur utilisateur){

@@ -21,19 +21,19 @@ public class CommentaireController {
         return commentaireService.findAll();
     }
     @GetMapping("/{id}")
-    public Commentaire findById(Long id){
+    public Commentaire findById(@PathVariable("id") Long id){
         return commentaireService.findById(id);
     }
     @PostMapping("")
-    public Commentaire save(Commentaire commentaire){
+    public Commentaire save(@RequestBody Commentaire commentaire){
         return commentaireService.save(commentaire);
     }
     @PutMapping("/update")
-    public Commentaire update(Commentaire commentaire){
+    public Commentaire update(@RequestBody Commentaire commentaire){
         return commentaireService.update(commentaire);
     }
     @DeleteMapping("/{id}")
-    public void deleteById(Long id){
+    public void deleteById(@PathVariable("id") Long id){
         commentaireService.deleteById(id);
     }
 
