@@ -14,7 +14,11 @@ public class Categorie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
+    @ManyToMany
+    @JoinTable(
+        name = "categorie_reservation",
+        joinColumns = @JoinColumn(name = "categorie_id"),
+        inverseJoinColumns = @JoinColumn(name = "reservation_id"))
     private Reservation reservation;
     private String nom;
     private String description;

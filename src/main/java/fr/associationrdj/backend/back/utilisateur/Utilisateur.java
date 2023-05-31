@@ -22,8 +22,9 @@ public class Utilisateur {
     private int numeroAdherent;
     private String pseudo;
     private String motDePasse;
-    @ManyToOne
+    @OneToMany
     private Coordonnee coordonnees;
+    @OneToOne
     private Permission permission;
     @ManyToMany
     @JoinTable(

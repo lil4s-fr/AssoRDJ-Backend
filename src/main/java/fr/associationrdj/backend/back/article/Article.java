@@ -17,7 +17,11 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
+    @ManyToMany
+    @JoinTable(
+            name = "article_categorie",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "categorie_id"))
     private Categorie categorie;
     @ManyToMany
     @JoinTable(
@@ -29,7 +33,7 @@ public class Article {
     private String corps;
     private Date date_ecriture;
     private Date date_modif;
-    private String like_dislike;
+    private String like_dislike;//TODO
 
 
 }
