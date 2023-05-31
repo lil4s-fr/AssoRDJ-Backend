@@ -1,9 +1,7 @@
 package fr.associationrdj.backend.back.commentaire;
 
 import fr.associationrdj.backend.back.evenement.Evenement;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,26 +16,23 @@ public class CommentaireController {
         this.commentaireService = commentaireService;
     }
 
+    @GetMapping("")
     public List<Commentaire> findAll(){
         return commentaireService.findAll();
     }
-
+    @GetMapping("/{id}")
     public Commentaire findById(Long id){
         return commentaireService.findById(id);
     }
-
-    public void create(Commentaire commentaire){
-        commentaireService.save(commentaire);
+    @PostMapping("")
+    public Commentaire save(Commentaire commentaire){
+        return commentaireService.save(commentaire);
     }
-
-    public void save(Commentaire commentaire){
-        commentaireService.save(commentaire);
-    }
-
+    @PutMapping("/update")
     public Commentaire update(Commentaire commentaire){
         return commentaireService.update(commentaire);
     }
-
+    @DeleteMapping("/{id}")
     public void deleteById(Long id){
         commentaireService.deleteById(id);
     }
