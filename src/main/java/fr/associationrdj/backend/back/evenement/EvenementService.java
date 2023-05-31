@@ -24,8 +24,8 @@ public class EvenementService {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Evenement not found"));
     }
 
-    public void save (Evenement evenement){
-        evenementRepository.save(evenement);
+    public Evenement save (Evenement evenement){
+        return evenementRepository.save(evenement);
     }
 
     public Evenement update(Evenement evenement){
