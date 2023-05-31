@@ -32,7 +32,7 @@ public class PermissionService {
     public Permission update(Permission permission){
         Permission permission1Actuel = permissionRepository.findById(permission.getId()).orElse(null);
         if (permission1Actuel != null) {
-            permission1Actuel.setUtilisateur(permission.getUtilisateur());
+            permission1Actuel.setUtilisateurs(permission.getUtilisateurs());
             permission1Actuel.setStatut(permission.getStatut());
             return permissionRepository.save(permission);
         } else {

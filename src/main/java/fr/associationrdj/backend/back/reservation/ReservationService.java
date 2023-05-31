@@ -31,7 +31,7 @@ public class ReservationService {
         if (reservationActuel != null){
             reservationActuel.setDate_reservation(reservation.getDate_reservation());
             reservationActuel.setCreneau(reservation.getCreneau());
-            reservationActuel.setUtilisateur(reservation.getUtilisateur());
+            reservationActuel.setUtilisateurs(reservation.getUtilisateurs());
             reservationActuel.setDescription(reservation.getDescription());
             reservationActuel.setSalle(reservation.getSalle());
             reservationActuel.setValidation(reservation.isValidation());

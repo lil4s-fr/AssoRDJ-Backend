@@ -30,7 +30,7 @@ public class CategorieService {
         if(categorie.getId() != null){
             categorieActuel.setNom(categorie.getNom());
             categorieActuel.setDescription(categorie.getDescription());
-            categorieActuel.setReservation(categorie.getReservation());
+            categorieActuel.setReservations(categorie.getReservations());
             return categorieRepository.save(categorie);
         }else{
             throw new RuntimeException("Categorie Not-Found");

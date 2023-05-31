@@ -32,7 +32,7 @@ public class EvenementService {
         Evenement evenementActuel = evenementRepository.findById(evenement.getId()).orElse(null);
         if (evenementActuel != null) {
             evenementActuel.setNom(evenement.getNom());
-            evenementActuel.setCategorie(evenementActuel.getCategorie());
+            evenementActuel.setCategories(evenementActuel.getCategories());
             evenementActuel.setDateCreation(evenementActuel.getDateCreation());
             evenementActuel.setDescritpion(evenement.getDescritpion());
             evenementActuel.setDateFin(evenement.getDateFin());
