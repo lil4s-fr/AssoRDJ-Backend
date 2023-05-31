@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,13 +23,13 @@ public class Article {
             name = "article_categorie",
             joinColumns = @JoinColumn(name = "article_id"),
             inverseJoinColumns = @JoinColumn(name = "categorie_id"))
-    private Categorie categorie;
+    private List<Categorie> categories;
     @ManyToMany
     @JoinTable(
             name = "article_utilisateur",
             joinColumns = @JoinColumn(name = "article_id"),
             inverseJoinColumns = @JoinColumn(name = "utilisateur_id"))
-    private Utilisateur utilisateur;
+    private List<Utilisateur> utilisateurs;
     private String titre;
     private String corps;
     private Date date_ecriture;

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,7 +23,7 @@ public class Evenement {
             name = "evenement_categorie",
             joinColumns = @JoinColumn(name = "evenement_id"),
             inverseJoinColumns = @JoinColumn(name = "categorie_id"))
-    private Categorie categorie;
+    private List<Categorie> categories;
     private String nom;
     private Date dateCreation;
     private Date dateDebut;

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -19,7 +21,7 @@ public class Categorie {
         name = "categorie_reservation",
         joinColumns = @JoinColumn(name = "categorie_id"),
         inverseJoinColumns = @JoinColumn(name = "reservation_id"))
-    private Reservation reservation;
+    private List<Reservation> reservations;
     private String nom;
     private String description;
 }

@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,7 +26,7 @@ public class Reservation {
             name = "reservation_utilisateur",
             joinColumns = @JoinColumn(name = "reservation_id"),
             inverseJoinColumns = @JoinColumn(name = "utilisateur_id"))
-    private Utilisateur utilisateur;
+    private List<Utilisateur> utilisateurs;
     private int participant;
     private boolean validation;
     private Date date_reservation;

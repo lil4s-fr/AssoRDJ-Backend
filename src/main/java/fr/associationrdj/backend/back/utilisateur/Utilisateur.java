@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.security.Permission;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,14 +24,14 @@ public class Utilisateur {
     private String pseudo;
     private String motDePasse;
     @OneToMany
-    private Coordonnee coordonnees;
-    @OneToOne
+    private List<Coordonnee> coordonnees;
+
     private Permission permission;
     @ManyToMany
     @JoinTable(
             name = "utilisateur_categorie",
             joinColumns = @JoinColumn(name = "utilisateur_id"),
             inverseJoinColumns = @JoinColumn(name = "categorie_id"))
-    private Categorie categorie;
+    private List<Categorie> categories;
 
 }
