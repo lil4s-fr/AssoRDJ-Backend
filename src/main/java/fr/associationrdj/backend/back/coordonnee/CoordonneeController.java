@@ -1,8 +1,6 @@
 package fr.associationrdj.backend.back.coordonnee;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,27 +14,23 @@ public class CoordonneeController {
     public CoordonneeController(CoordonneeService coordonneeService) {
         this.coordonneeService = coordonneeService;
     }
-
+    @GetMapping("")
     public List<Coordonnee> findAll(){
         return coordonneeService.findAll();
     }
-
+    @GetMapping("")
     public Coordonnee findById(Long id){
         return coordonneeService.findById(id);
     }
-
-    public void create (Coordonnee coordonnee){
-        coordonneeService.save(coordonnee);
+    @PostMapping("")
+    public Coordonnee save (Coordonnee coordonnee){
+        return coordonneeService.save(coordonnee);
     }
-
-    public void save (Coordonnee coordonnee){
-        coordonneeService.save(coordonnee);
-    }
-
+    @PutMapping("/update")
     public Coordonnee update(Coordonnee coordonnee){
         return coordonneeService.update(coordonnee);
     }
-
+    @DeleteMapping("/{id}")
     public void deleteById(Long id){
         coordonneeService.deleteById(id);
     }
