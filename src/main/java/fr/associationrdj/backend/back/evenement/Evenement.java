@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,7 +18,12 @@ public class Evenement {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Categorie categorie;
+    @ManyToMany
+    @JoinTable(
+            name = "evenement_categorie",
+            joinColumns = @JoinColumn(name = "evenement_id"),
+            inverseJoinColumns = @JoinColumn(name = "categorie_id"))
+    private List<Categorie> categories;
     private String nom;
     private Date dateCreation;
     private Date dateDebut;

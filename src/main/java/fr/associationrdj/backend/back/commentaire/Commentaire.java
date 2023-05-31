@@ -15,7 +15,9 @@ public class Commentaire {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToOne
     private Utilisateur utilisateur;
+    @ManyToOne
     private Article article;
     private String commentaire;
     private String like_dislike;

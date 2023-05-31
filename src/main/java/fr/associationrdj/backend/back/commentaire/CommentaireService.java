@@ -25,8 +25,8 @@ public class CommentaireService {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Evenement not found"));
     }
 
-    public void save (Commentaire commentaire){
-        commentaireRepository.save(commentaire);
+    public Commentaire save (Commentaire commentaire){
+        return commentaireRepository.save(commentaire);
     }
 
     public Commentaire update(Commentaire commentaire){

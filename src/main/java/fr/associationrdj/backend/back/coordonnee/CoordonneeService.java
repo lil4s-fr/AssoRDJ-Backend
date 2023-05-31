@@ -24,8 +24,8 @@ public class CoordonneeService {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "coordonnee not found"));
     }
 
-    public void save (Coordonnee coordonnee){
-        coordonneeRepository.save(coordonnee);
+    public Coordonnee save (Coordonnee coordonnee){
+        return coordonneeRepository.save(coordonnee);
     }
 
     public Coordonnee update(Coordonnee coordonnee){

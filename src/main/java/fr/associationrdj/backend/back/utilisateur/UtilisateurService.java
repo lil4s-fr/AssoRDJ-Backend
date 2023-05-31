@@ -38,7 +38,7 @@ public class UtilisateurService {
             utilisateurActuel.setMotDePasse(utilisateur.getMotDePasse());
             utilisateurActuel.setCoordonnees(utilisateur.getCoordonnees());
             utilisateurActuel.setPermission(utilisateur.getPermission());
-            utilisateurActuel.setCategorie(utilisateur.getCategorie());
+            utilisateurActuel.setCategories(utilisateur.getCategories());
             return utilisateurRepository.save(utilisateur);
         } else {
             throw new RuntimeException("Utilisateur not found for id : " + utilisateur.getId());

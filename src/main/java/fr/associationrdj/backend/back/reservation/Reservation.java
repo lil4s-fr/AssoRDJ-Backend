@@ -1,5 +1,6 @@
 package fr.associationrdj.backend.back.reservation;
 
+import fr.associationrdj.backend.back.salle.Salle;
 import fr.associationrdj.backend.back.utilisateur.Utilisateur;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,8 +21,12 @@ public class Reservation {
     private Long id;
     @ManyToOne
     private Salle salle;
-    @ManyToOne
-    private Utilisateur utilisateur;
+    @ManyToMany
+    @JoinTable(
+            name = "reservation_utilisateur",
+            joinColumns = @JoinColumn(name = "reservation_id"),
+            inverseJoinColumns = @JoinColumn(name = "utilisateur_id"))
+    private List<Utilisateur> utilisateurs;
     private int participant;
     private boolean validation;
     private Date date_reservation;

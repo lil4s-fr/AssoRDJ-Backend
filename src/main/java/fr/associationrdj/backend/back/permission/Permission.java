@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.IdGeneratorType;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -17,7 +19,8 @@ public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Utilisateur utilisateur;
+    @OneToMany
+    private List<Utilisateur> utilisateurs;
     private String statut;
 
 

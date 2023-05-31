@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,15 +18,23 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Categorie categorie;
-    @ManyToOne
-    private Utilisateur utilisateur;
+    @ManyToMany
+    @JoinTable(
+            name = "article_categorie",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "categorie_id"))
+    private List<Categorie> categories;
+    @ManyToMany
+    @JoinTable(
+            name = "article_utilisateur",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "utilisateur_id"))
+    private List<Utilisateur> utilisateurs;
     private String titre;
     private String corps;
     private Date date_ecriture;
     private Date date_modif;
-    private String like_dislike;
+    private String like_dislike;//TODO
 
 
 }

@@ -1,8 +1,6 @@
 package fr.associationrdj.backend.back.evenement;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,27 +14,23 @@ public class EvenementController {
     public EvenementController(EvenementService evenementService) {
         this.evenementService = evenementService;
     }
-
+    @GetMapping("")
     public List<Evenement> findAll(){
         return evenementService.findAll();
     }
-
+    @GetMapping("/{id}")
     public Evenement findById(Long id){
         return evenementService.findById(id);
     }
-
-    public void create(Evenement evenement){
-        evenementService.save(evenement);
+    @PostMapping("")
+    public Evenement save(Evenement evenement){
+        return evenementService.save(evenement);
     }
-
-    public void save(Evenement evenement){
-        evenementService.save(evenement);
-    }
-
+    @PutMapping("/update")
     public Evenement update(Evenement utilisateur){
         return evenementService.update(utilisateur);
     }
-
+    @DeleteMapping("/{id}")
     public void deleteById(Long id){
         evenementService.deleteById(id);
     }

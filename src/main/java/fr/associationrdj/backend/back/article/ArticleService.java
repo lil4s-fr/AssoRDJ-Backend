@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class ArticleService {
-    private ArticleRepository articleRepository;
+    private final ArticleRepository articleRepository;
 
     public ArticleService(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
@@ -35,8 +35,8 @@ public class ArticleService {
         if (article.getId() != null){
             articleActuel.setTitre(article.getTitre());
             articleActuel.setCorps(article.getCorps());
-            articleActuel.setCategorie(article.getCategorie());
-            articleActuel.setUtilisateur(article.getUtilisateur());
+            articleActuel.setCategories(article.getCategories());
+            articleActuel.setUtilisateurs(article.getUtilisateurs());
             articleActuel.setDate_modif(article.getDate_modif());
             articleActuel.setLike_dislike(article.getLike_dislike());
             return articleRepository.save(article);
