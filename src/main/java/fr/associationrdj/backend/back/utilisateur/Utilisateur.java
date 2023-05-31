@@ -26,6 +26,10 @@ public class Utilisateur {
     private Coordonnee coordonnees;
     private Permission permission;
     @ManyToMany
+    @JoinTable(
+            name = "utilisateur_categorie",
+            joinColumns = @JoinColumn(name = "utilisateur_id"),
+            inverseJoinColumns = @JoinColumn(name = "categorie_id"))
     private Categorie categorie;
 
 }

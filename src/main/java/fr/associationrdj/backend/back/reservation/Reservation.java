@@ -1,5 +1,6 @@
 package fr.associationrdj.backend.back.reservation;
 
+import fr.associationrdj.backend.back.salle.Salle;
 import fr.associationrdj.backend.back.utilisateur.Utilisateur;
 import jakarta.persistence.*;
 import lombok.Getter;

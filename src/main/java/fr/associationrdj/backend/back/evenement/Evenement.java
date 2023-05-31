@@ -17,6 +17,7 @@ public class Evenement {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToOne
     private Categorie categorie;
     private String nom;
     private Date dateCreation;

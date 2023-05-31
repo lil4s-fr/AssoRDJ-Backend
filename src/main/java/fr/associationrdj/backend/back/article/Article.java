@@ -19,7 +19,11 @@ public class Article {
     private Long id;
     @ManyToOne
     private Categorie categorie;
-    @ManyToOne
+    @ManyToMany
+    @JoinTable(
+            name = "article_utilisateur",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "utilisateur_id"))
     private Utilisateur utilisateur;
     private String titre;
     private String corps;

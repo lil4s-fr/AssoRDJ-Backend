@@ -1,5 +1,6 @@
 package fr.associationrdj.backend.back.demandeContact;
 
+import fr.associationrdj.backend.back.typedemande.TypeDemande;
 import fr.associationrdj.backend.back.utilisateur.Utilisateur;
 import jakarta.persistence.*;
 import lombok.Getter;

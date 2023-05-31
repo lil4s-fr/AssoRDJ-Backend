@@ -17,6 +17,7 @@ public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @OneToMany
     private Utilisateur utilisateur;
     private String statut;
 
