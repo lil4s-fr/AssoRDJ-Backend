@@ -13,12 +13,9 @@ public class Coordonnee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String email;
     private String numeroRue;
     private String rue;
     private String complementAdresse;
     private int codePostal;
     private String ville;
-    private String numeroTelephone;
-
 }
