@@ -13,15 +13,14 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "tables")
 public class Permission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String statut;
     @OneToMany
     private List<Utilisateur> utilisateurs;
-    private String statut;
 
 
 }
