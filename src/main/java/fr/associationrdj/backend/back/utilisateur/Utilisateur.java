@@ -2,12 +2,12 @@ package fr.associationrdj.backend.back.utilisateur;
 
 import fr.associationrdj.backend.back.categorie.Categorie;
 import fr.associationrdj.backend.back.coordonnee.Coordonnee;
+import fr.associationrdj.backend.back.permission.Permission;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.security.Permission;
 import java.util.List;
+
 
 @Entity
 @Getter
@@ -27,7 +27,8 @@ public class Utilisateur {
     private String hashMotDePasse;
     @OneToMany
     private List<Coordonnee> coordonnees;
-
+    @ManyToOne
+    private Permission permission;
     @ManyToMany
     @JoinTable(
             name = "utilisateur_categorie",
