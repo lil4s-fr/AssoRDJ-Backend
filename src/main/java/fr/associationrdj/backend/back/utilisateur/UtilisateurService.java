@@ -1,5 +1,8 @@
 package fr.associationrdj.backend.back.utilisateur;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.associationrdj.backend.back.utilisateur.dto.UtilisateurDTOFindAll;
+import fr.associationrdj.backend.back.utilisateur.dto.UtilisateurDTOSansMDP;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -9,21 +12,24 @@ import java.util.List;
 @Service
 public class UtilisateurService {
 
-    private UtilisateurRepository utilisateurRepository;
+    private final UtilisateurRepository utilisateurRepository;
+    private final ObjectMapper objectMapper;
 
-    public UtilisateurService(UtilisateurRepository utilisateurRepository) {
+    public UtilisateurService(UtilisateurRepository utilisateurRepository, ObjectMapper objectMapper) {
         this.utilisateurRepository = utilisateurRepository;
+        this.objectMapper = objectMapper;
     }
 
-    public List<Utilisateur> findAll(){
-        return utilisateurRepository.findAll();
+    public List<UtilisateurDTOFindAll> findAll(){
+        List<Utilisateur> utilisateurs = utilisateurRepository.findAll();
+        return utilisateurs.stream().map(utilisateur -> objectMapper.convertValue(utilisateur, UtilisateurDTOFindAll.class) ).toList();
     }
 
-    public Utilisateur findById(Long id){
-        return utilisateurRepository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Acteur not found"));
+    public UtilisateurDTOSansMDP findById(Long id){
+        Utilisateur utilisateur = utilisateurRepository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Utilisateur not found"));
+        return objectMapper.convertValue(utilisateur, UtilisateurDTOSansMDP.class);
     }
-
     public Utilisateur save (Utilisateur utilisateur){
         return utilisateurRepository.save(utilisateur);
     }
