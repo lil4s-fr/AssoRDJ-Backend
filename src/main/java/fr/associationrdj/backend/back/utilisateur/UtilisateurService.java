@@ -35,9 +35,10 @@ public class UtilisateurService {
             utilisateurActuel.setPrenom(utilisateur.getPrenom());
             utilisateurActuel.setNumeroAdherent(utilisateur.getNumeroAdherent());
             utilisateurActuel.setPseudo(utilisateur.getPseudo());
-            utilisateurActuel.setMotDePasse(utilisateur.getMotDePasse());
+            utilisateurActuel.setEmail(utilisateur.getEmail());
+            utilisateurActuel.setNumeroTelephone(utilisateur.getNumeroTelephone());
+            utilisateurActuel.setHashMotDePasse(utilisateur.getHashMotDePasse());
             utilisateurActuel.setCoordonnees(utilisateur.getCoordonnees());
-            utilisateurActuel.setPermission(utilisateur.getPermission());
             utilisateurActuel.setCategories(utilisateur.getCategories());
             return utilisateurRepository.save(utilisateur);
         } else {

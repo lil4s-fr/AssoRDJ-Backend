@@ -31,13 +31,11 @@ public class CoordonneeService {
     public Coordonnee update(Coordonnee coordonnee){
         Coordonnee coordonneeActuel = coordonneeRepository.findById(coordonnee.getId()).orElse(null);
         if (coordonneeActuel != null) {
-            coordonneeActuel.setEmail(coordonnee.getEmail());
             coordonneeActuel.setNumeroRue(coordonnee.getNumeroRue());
             coordonneeActuel.setRue(coordonnee.getRue());
             coordonneeActuel.setComplementAdresse(coordonnee.getComplementAdresse());
             coordonneeActuel.setCodePostal(coordonnee.getCodePostal());
             coordonneeActuel.setVille(coordonnee.getVille());
-            coordonneeActuel.setNumeroTelephone(coordonnee.getNumeroTelephone());
             return coordonneeRepository.save(coordonnee);
         } else {
             throw new RuntimeException("Coordonnées not found for id : " + coordonnee.getId());
