@@ -22,7 +22,9 @@ public class Utilisateur {
     private String prenom;
     private int numeroAdherent;
     private String pseudo;
-    private String motDePasse;
+    private String email;
+    private String numeroTelephone;
+    private String hashMotDePasse;
     @OneToMany
     private List<Coordonnee> coordonnees;
 
