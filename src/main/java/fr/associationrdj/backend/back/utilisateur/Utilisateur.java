@@ -26,7 +26,6 @@ public class Utilisateur {
     @OneToMany
     private List<Coordonnee> coordonnees;
 
-    private Permission permission;
     @ManyToMany
     @JoinTable(
             name = "utilisateur_categorie",
