@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Permission;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/typedemandes")
 public class TypeDemandeController {
