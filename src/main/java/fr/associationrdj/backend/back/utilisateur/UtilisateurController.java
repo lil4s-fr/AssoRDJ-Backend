@@ -1,5 +1,7 @@
 package fr.associationrdj.backend.back.utilisateur;
 
+import fr.associationrdj.backend.back.utilisateur.dto.UtilisateurDTOFindAll;
+import fr.associationrdj.backend.back.utilisateur.dto.UtilisateurDTOSansMDP;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,11 +18,11 @@ public class UtilisateurController {
     }
 
     @GetMapping("")
-    public List<Utilisateur> findAll(){
+    public List<UtilisateurDTOFindAll> findAll(){
         return utilisateurService.findAll();
     }
     @GetMapping("/{id}")
-    public Utilisateur findById(@PathVariable("id") Long id){
+    public UtilisateurDTOSansMDP findById(@PathVariable("id") Long id){
         return utilisateurService.findById(id);
     }
     @PostMapping("")
