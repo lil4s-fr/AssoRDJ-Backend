@@ -1,5 +1,6 @@
 package fr.associationrdj.backend.back.salle;
 
+import fr.associationrdj.backend.back.salle.dto.SalleDTOFindAll;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ public class SalleController {
         this.salleService = salleService;
     }
     @GetMapping("")
-    public List<Salle> findAll(){
+    public List<SalleDTOFindAll> findAll(){
         return salleService.findAll();
     }
     @GetMapping("/{id}")

@@ -1,5 +1,7 @@
 package fr.associationrdj.backend.back.salle;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.associationrdj.backend.back.salle.dto.SalleDTOFindAll;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -9,12 +11,15 @@ import java.util.List;
 @Service
 public class SalleService {
     private final SalleRepository salleRepository;
+    private final ObjectMapper objectMapper;
 
-    public SalleService(SalleRepository salleRepository) {
+    public SalleService(SalleRepository salleRepository, ObjectMapper objectMapper) {
         this.salleRepository = salleRepository;
+        this.objectMapper = objectMapper;
     }
-    public List<Salle> findAll(){
-        return salleRepository.findAll();
+    public List<SalleDTOFindAll> findAll(){
+        List<Salle> salles = salleRepository.findAll();
+        return salles.stream().map(salle -> objectMapper.convertValue(salle, SalleDTOFindAll.class) ).toList();
     }
     public Salle findById(Long id){
         return salleRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Salle Not-Found") {
