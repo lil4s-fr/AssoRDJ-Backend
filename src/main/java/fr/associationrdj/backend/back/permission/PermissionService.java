@@ -1,6 +1,7 @@
 package fr.associationrdj.backend.back.permission;
 
-import fr.associationrdj.backend.back.commentaire.Commentaire;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.associationrdj.backend.back.permission.dto.PermissionDTOFindAll;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -10,14 +11,17 @@ import java.util.List;
 @Service
 public class PermissionService {
 
-    private PermissionRepository permissionRepository;
+    private final PermissionRepository permissionRepository;
+    private final ObjectMapper objectMapper;
 
-    public PermissionService(PermissionRepository permissionRepository) {
+    public PermissionService(PermissionRepository permissionRepository, ObjectMapper objectMapper) {
         this.permissionRepository = permissionRepository;
+        this.objectMapper = objectMapper;
     }
 
-    public List<Permission> findAll(){
-        return permissionRepository.findAll();
+    public List<PermissionDTOFindAll> findAll(){
+        List<Permission> permissions = permissionRepository.findAll();
+        return permissions.stream().map(permission -> objectMapper.convertValue(permission, PermissionDTOFindAll.class)).toList();
     }
 
     public Permission findById(Long id){
