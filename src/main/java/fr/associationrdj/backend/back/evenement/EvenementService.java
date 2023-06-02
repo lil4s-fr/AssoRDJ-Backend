@@ -1,22 +1,38 @@
 package fr.associationrdj.backend.back.evenement;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.associationrdj.backend.back.evenement.dto.EvenementDTOFindAll;
+import fr.associationrdj.backend.back.evenement.dto.EvenementDTOPostLocalDate;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+
 public class EvenementService {
 
     private final EvenementRepository evenementRepository;
+    private final ObjectMapper objectMapper;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    public EvenementService(EvenementRepository evenementRepository) {
+    public EvenementService(EvenementRepository evenementRepository, ObjectMapper objectMapper) {
         this.evenementRepository = evenementRepository;
+        this.objectMapper = objectMapper;
     }
 
-    public List<Evenement> findAll(){
-        return evenementRepository.findAll();
+    public List<EvenementDTOFindAll> findAll(){
+        List<Evenement> evenements = evenementRepository.findAll();
+        return evenements.stream().map(evenement -> objectMapper.convertValue(evenement, EvenementDTOFindAll.class)).toList();
     }
 
     public Evenement findById(Long id){
@@ -45,6 +61,45 @@ public class EvenementService {
 
     public void deleteById(Long id){
         evenementRepository.deleteById(id);
+    }
+
+    /**
+     * Tri une liste d'évènements par ordre de date croissante.
+     * @param evenements
+     * @return evenements
+     */
+    public List<Evenement> trierDatesCroissant(List<Evenement> evenements){
+        Collections.sort(evenements, Comparator.comparing(Evenement::getDateDebut));
+        return evenements;
+    }
+
+    // ICIIIIIIIIIIIIIIIIIIII CA MARCHE PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//    /**
+//     *Filtre une liste d'evenements en retournant que les evenements postérieur à la date actuelle.
+//     * @return evenements
+//     */
+//    public List<Evenement> filtrerDates(List<Evenement> evenements) {
+//        LocalDate dateActuelle = LocalDate.now();
+//        return evenements.stream().filter(date -> !date.getDateDebut().isBefore(dateActuelle)).collect(Collectors.toList());
+//    }
+
+    // ICI je re-test en ecrivant la fonction en JSQL ... Mais j'ai pas fini !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public List<Evenement> getDatesCommencantAujourdhui(List<Evenement> evenements) {
+        String jpql = "SELECT e.dateDebut FROM Evenement e WHERE FUNCTION('DATE', e.dateDebut) >= FUNCTION('CURRENT_DATE')";
+        evenements = entityManager.createQuery(jpql, evenements.class).getResultList();
+        return evenements;
+    }
+
+
+    /**
+     * Retourne la liste des evenements à venir
+     * @return
+     */
+    public List<EvenementDTOPostLocalDate> findAllPostLocalDate(){
+        List<Evenement> evenements = evenementRepository.findAll();
+        getDatesCommencantAujourdhui(evenements);
+        trierDatesCroissant(evenements);
+        return evenements.stream().map(evenement -> objectMapper.convertValue(evenement, EvenementDTOPostLocalDate.class)).toList();
     }
 
 }

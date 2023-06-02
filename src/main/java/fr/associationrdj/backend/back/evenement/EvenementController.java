@@ -1,5 +1,7 @@
 package fr.associationrdj.backend.back.evenement;
 
+import fr.associationrdj.backend.back.evenement.dto.EvenementDTOFindAll;
+import fr.associationrdj.backend.back.evenement.dto.EvenementDTOPostLocalDate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +17,7 @@ public class EvenementController {
         this.evenementService = evenementService;
     }
     @GetMapping("")
-    public List<Evenement> findAll(){
+    public List<EvenementDTOFindAll> findAll(){
         return evenementService.findAll();
     }
     @GetMapping("/{id}")
@@ -33,6 +35,10 @@ public class EvenementController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){
         evenementService.deleteById(id);
+    }
+    @GetMapping("/postlocaldate")
+    public List<EvenementDTOPostLocalDate> findAllPostLocalDate(){
+        return evenementService.findAllPostLocalDate();
     }
 
 }

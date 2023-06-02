@@ -1,11 +1,12 @@
 package fr.associationrdj.backend.back.evenement;
 
-import com.fasterxml.jackson.databind.DatabindException;
 import fr.associationrdj.backend.back.categorie.Categorie;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "evenements")
-public class Evenement {
+public class Evenement{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,9 +26,12 @@ public class Evenement {
             inverseJoinColumns = @JoinColumn(name = "categorie_id"))
     private List<Categorie> categories;
     private String nom;
-    private Date dateCreation;
-    private Date dateDebut;
-    private Date dateFin;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dateCreation;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dateDebut;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dateFin;
     private String descritpion;
 
 
