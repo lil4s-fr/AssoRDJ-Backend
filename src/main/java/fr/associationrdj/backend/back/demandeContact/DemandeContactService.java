@@ -52,11 +52,12 @@ public class DemandeContactService {
     /**
      * Met à jour une demande de contact.
      * @param demandeContact la demande de contact à mettre à jour
+     * @param id l'identifiant de la demande de contact
      * @return la demande de contact mis à jour
      * @throws RuntimeException si la demande de contact n'est pas trouvé
      */
-    public DemandeContact update(DemandeContact demandeContact){
-        DemandeContact demandeContactActuel = demandeContactRepository.findById(demandeContact.getId()).orElse(null);
+    public DemandeContact updateById(Long id, DemandeContact demandeContact){
+        DemandeContact demandeContactActuel = demandeContactRepository.findById(id).orElse(null);
         if (demandeContact.getId() != null){
             demandeContactActuel.setUtilisateur(demandeContact.getUtilisateur());
             demandeContactActuel.setTypeDemande(demandeContact.getTypeDemande());

@@ -30,8 +30,8 @@ public class ReservationController {
     public void deleteById(@PathVariable("id")Long id){
         reservationService.deleteById(id);
     }
-    @PutMapping("/update")
-    public Reservation update(@RequestBody Reservation reservation){
-        return reservationService.update(reservation);
+    @PutMapping("/{id}")
+    public Reservation updateById(@PathVariable("id")Long id, @RequestBody Reservation reservation){
+        return reservationService.updateById(id, reservation);
     }
 }

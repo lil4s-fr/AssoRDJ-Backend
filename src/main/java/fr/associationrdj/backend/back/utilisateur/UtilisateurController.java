@@ -29,9 +29,9 @@ public class UtilisateurController {
     public Utilisateur save(@RequestBody Utilisateur utilisateur){
         return utilisateurService.save(utilisateur);
     }
-    @PutMapping("")
-    public Utilisateur update(@RequestBody Utilisateur utilisateur){
-        return utilisateurService.update(utilisateur);
+    @PutMapping("/{id}")
+    public Utilisateur updateById(@PathVariable("id")Long id, @RequestBody Utilisateur utilisateur){
+        return utilisateurService.updateById(id, utilisateur);
     }
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){

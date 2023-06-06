@@ -52,11 +52,12 @@ public class UtilisateurService {
     /**
      * Met à jour un utilisateur.
      * @param utilisateur l'utilisateur à mettre à jour
+     * @param id l'identifiant de l'utilisateur
      * @return l'utilisateur mis à jour
      * @throws RuntimeException si l'utilisateur n'est pas trouvé
      */
-    public Utilisateur update(Utilisateur utilisateur){
-        Utilisateur utilisateurActuel = utilisateurRepository.findById(utilisateur.getId()).orElse(null);
+    public Utilisateur updateById(Long id, Utilisateur utilisateur){
+        Utilisateur utilisateurActuel = utilisateurRepository.findById(id).orElse(null);
         if (utilisateurActuel != null) {
             utilisateurActuel.setNom(utilisateur.getNom());
             utilisateurActuel.setPrenom(utilisateur.getPrenom());

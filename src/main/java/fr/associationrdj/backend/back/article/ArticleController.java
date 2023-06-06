@@ -31,9 +31,9 @@ public class ArticleController {
     public void deleteById(@PathVariable("id") Long id){
         articleService.deleteByid(id);
     }
-    @PutMapping("/update")
-    public Article update(@RequestBody Article article){
-        return articleService.update(article);
+    @PutMapping("/{id}")
+    public Article updateById(@PathVariable("id") Long id, @RequestBody Article article){
+        return articleService.updateById(id, article);
     }
     @GetMapping("/threeLastArticle")
     public List<ArticleDTOThreeLastArticle> threeLastArticles(){

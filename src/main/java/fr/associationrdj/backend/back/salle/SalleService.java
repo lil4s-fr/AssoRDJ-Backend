@@ -57,11 +57,12 @@ public class SalleService {
     /**
      * Met à jour une salle.
      * @param salle la salle à mettre à jour
+     * @param id l'identifiant de la salle
      * @return la salle mis à jour
      * @throws RuntimeException si la salle n'est pas trouvé
      */
-    public Salle update(Salle salle){
-        Salle salleActuel = salleRepository.findById(salle.getId()).orElse(null);
+    public Salle updateById (Long id, Salle salle){
+        Salle salleActuel = salleRepository.findById(id).orElse(null);
         if (salle.getId() != null){
             salleActuel.setNom(salle.getNom());
             salleActuel.setCapacite(salle.getCapacite());

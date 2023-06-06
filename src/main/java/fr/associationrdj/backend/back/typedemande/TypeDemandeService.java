@@ -53,11 +53,12 @@ public class TypeDemandeService {
     /**
      * Met à jour un type de demande.
      * @param typeDemande le type de demande à mettre à jour
+     * @param id l'identifiant du type de demande
      * @return le type de demande mis à jour
      * @throws RuntimeException si le type de demande n'est pas trouvé
      */
-    public TypeDemande update(TypeDemande typeDemande){
-        TypeDemande typeDemandeActuel = typeDemandeRepository.findById(typeDemande.getId()).orElse(null);
+    public TypeDemande updateById(Long id, TypeDemande typeDemande){
+        TypeDemande typeDemandeActuel = typeDemandeRepository.findById(id).orElse(null);
         if (typeDemandeActuel != null){
             typeDemandeActuel.setNom_type(typeDemande.getNom_type());
             return typeDemandeRepository.save(typeDemande);

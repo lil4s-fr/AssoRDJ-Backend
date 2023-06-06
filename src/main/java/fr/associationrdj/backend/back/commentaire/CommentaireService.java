@@ -45,11 +45,12 @@ public class CommentaireService {
     /**
      * Met à jour un commentaire.
      * @param commentaire le commentaire à mettre à jour
+     * @param id l'identifiant du commentaire
      * @return le commentaire mis à jour
      * @throws RuntimeException si le commentaire n'est pas trouvé
      */
-    public Commentaire update(Commentaire commentaire){
-        Commentaire commentaireActuel = commentaireRepository.findById(commentaire.getId()).orElse(null);
+    public Commentaire updateById(Long id, Commentaire commentaire){
+        Commentaire commentaireActuel = commentaireRepository.findById(id).orElse(null);
         if (commentaireActuel != null) {
             commentaireActuel.setCommentaire(commentaire.getCommentaire());
             commentaireActuel.setArticle(commentaire.getArticle());

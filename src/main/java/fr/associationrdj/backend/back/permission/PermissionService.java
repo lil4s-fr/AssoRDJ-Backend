@@ -50,17 +50,18 @@ public class PermissionService {
     /**
      * Met à jour une permission.
      * @param permission la permission à mettre à jour
+     * @param id l'identifiant de la permission
      * @return la permission mis à jour
      * @throws RuntimeException si la permission n'est pas trouvé
      */
-    public Permission update(Long id, Permission permission){
-        Permission permission1Actuel = permissionRepository.findById(permission.getId()).orElse(null);
-        if (permission1Actuel != null) {
-            permission1Actuel.setUtilisateurs(permission.getUtilisateurs());
-            permission1Actuel.setStatut(permission.getStatut());
-            return permissionRepository.save(permission);
+    public Permission updateById(Long id, Permission permission) {
+        Permission permissionActuelle = permissionRepository.findById(id).orElse(null);
+        if (permissionActuelle != null) {
+            permissionActuelle.setUtilisateurs(permission.getUtilisateurs());
+            permissionActuelle.setStatut(permission.getStatut());
+            return permissionRepository.save(permissionActuelle);
         } else {
-            throw new RuntimeException("Permission not found for id : " + permission.getId());
+            throw new RuntimeException("Permission not found for id : " + id);
         }
     }
 

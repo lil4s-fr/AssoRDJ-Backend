@@ -32,8 +32,8 @@ public class PermissionController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id")Long id) { permissionService.deleteById(id); }
     @PutMapping("/{id}")
-    public Permission update(@PathVariable("id)") Long id, @RequestBody Permission permission ){
-        return permissionService.update(id, permission);
+    public Permission updateById(@PathVariable("id") Long id, @RequestBody Permission permission ){
+        return permissionService.updateById(id, permission);
     }
 
 }

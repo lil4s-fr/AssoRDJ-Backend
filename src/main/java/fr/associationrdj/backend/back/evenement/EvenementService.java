@@ -59,11 +59,12 @@ public class EvenementService {
     /**
      * Met à jour un evenement.
      * @param evenement l'evenement à mettre à jour
+     * @param id l'identifiant de l'evenement
      * @return l'evenement mis à jour
      * @throws RuntimeException si l'evenement n'est pas trouvé
      */
-    public Evenement update(Evenement evenement){
-        Evenement evenementActuel = evenementRepository.findById(evenement.getId()).orElse(null);
+    public Evenement updateById(Long id, Evenement evenement){
+        Evenement evenementActuel = evenementRepository.findById(id).orElse(null);
         if (evenementActuel != null) {
             evenementActuel.setNom(evenement.getNom());
             evenementActuel.setCategories(evenementActuel.getCategories());
