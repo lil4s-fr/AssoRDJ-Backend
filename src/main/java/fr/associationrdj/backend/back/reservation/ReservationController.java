@@ -1,5 +1,6 @@
 package fr.associationrdj.backend.back.reservation;
 
+import fr.associationrdj.backend.back.reservation.dto.ReservationDTOFindAll;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
     @GetMapping("")
-    public List<Reservation> findAll(){
+    public List<ReservationDTOFindAll> findAll(){
         return reservationService.findAll();
     }
     @GetMapping("/{id}")

@@ -1,5 +1,8 @@
 package fr.associationrdj.backend.back.reservation;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.associationrdj.backend.back.reservation.dto.ReservationDTOFindAll;
+import fr.associationrdj.backend.back.utilisateur.dto.UtilisateurDTOFindAll;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -9,12 +12,15 @@ import java.util.List;
 @Service
 public class ReservationService {
     private final ReservationRepository reservationRepository;
+    private final ObjectMapper objectMapper;
 
-    public ReservationService(ReservationRepository reservationRepository) {
+    public ReservationService(ReservationRepository reservationRepository, ObjectMapper objectMapper) {
         this.reservationRepository = reservationRepository;
+        this.objectMapper = objectMapper;
     }
-    public List<Reservation> findAll(){
-        return reservationRepository.findAll();
+    public List<ReservationDTOFindAll> findAll(){
+        List<Reservation> reservations = reservationRepository.findAll();
+        return reservations.stream().map(reservation -> objectMapper.convertValue(reservation, ReservationDTOFindAll.class) ).toList();
     }
     public Reservation findById(Long id){
         return reservationRepository.findById(id).orElseThrow(
