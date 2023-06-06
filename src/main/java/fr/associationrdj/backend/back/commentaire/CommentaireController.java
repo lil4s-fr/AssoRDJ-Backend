@@ -28,9 +28,9 @@ public class CommentaireController {
     public Commentaire save(@RequestBody Commentaire commentaire){
         return commentaireService.save(commentaire);
     }
-    @PutMapping("/update")
-    public Commentaire update(@RequestBody Commentaire commentaire){
-        return commentaireService.update(commentaire);
+    @PutMapping("/{id}")
+    public Commentaire updateById(@PathVariable("id")Long id, @RequestBody Commentaire commentaire){
+        return commentaireService.updateById(id, commentaire);
     }
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){

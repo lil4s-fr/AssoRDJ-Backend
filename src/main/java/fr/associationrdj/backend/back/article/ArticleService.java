@@ -61,22 +61,19 @@ public class ArticleService {
     /**
      * Met à jour un article.
      * @param article l'article à mettre à jour
+     * @param id l'identifiant de l'article
      * @return l'article mis à jour
      * @throws RuntimeException si l'article n'est pas trouvé
      */
-    public Article update(Article article){
-        Article articleActuel = articleRepository.findById(article.getId()).orElse(null);
-        if (article.getId() != null){
-            articleActuel.setTitre(article.getTitre());
-            articleActuel.setCorps(article.getCorps());
-            articleActuel.setCategories(article.getCategories());
-            articleActuel.setUtilisateurs(article.getUtilisateurs());
-            articleActuel.setDate_modif(article.getDate_modif());
-            articleActuel.setLike_dislike(article.getLike_dislike());
-            return articleRepository.save(article);
-        }else{
-            throw new RuntimeException("Article Not-Found");
-        }
+    public Article updateById(Long id, Article article){
+        Article articleActuel = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found for id: " + id));
+        articleActuel.setTitre(article.getTitre());
+        articleActuel.setCorps(article.getCorps());
+        articleActuel.setCategories(article.getCategories());
+        articleActuel.setUtilisateurs(article.getUtilisateurs());
+        articleActuel.setDate_modif(article.getDate_modif());
+        articleActuel.setLike_dislike(article.getLike_dislike());
+        return articleRepository.save(articleActuel);
     }
     /**
      * Retourne les trois derniers articles.

@@ -57,11 +57,12 @@ public class ReservationService {
     /**
      * Met à jour une reservation.
      * @param reservation la reservation à mettre à jour
+     * @param id l'identifiant de la reservation
      * @return la reservation mis à jour
      * @throws RuntimeException si la reservation n'est pas trouvé
      */
-    public Reservation update(Reservation reservation){
-        Reservation reservationActuel = reservationRepository.findById(reservation.getId()).orElse(null);
+    public Reservation updateById(Long id, Reservation reservation){
+        Reservation reservationActuel = reservationRepository.findById(id).orElse(null);
         if (reservationActuel != null){
             reservationActuel.setDate_reservation(reservation.getDate_reservation());
             reservationActuel.setCreneau(reservation.getCreneau());

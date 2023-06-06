@@ -51,11 +51,12 @@ public class CategorieService {
     /**
      * Met à jour une categorie.
      * @param categorie la categorie à mettre à jour
+     * @param id l'identifiant de la catégorie
      * @return la categorie mis à jour
      * @throws RuntimeException si la categorie n'est pas trouvé
      */
-    public Categorie update(Categorie categorie){
-        Categorie categorieActuel = categorieRepository.findById(categorie.getId()).orElse(null);
+    public Categorie updateById(Long id, Categorie categorie){
+        Categorie categorieActuel = categorieRepository.findById(id).orElse(null);
         if(categorie.getId() != null){
             categorieActuel.setNom(categorie.getNom());
             categorieActuel.setDescription(categorie.getDescription());

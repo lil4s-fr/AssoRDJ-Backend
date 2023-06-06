@@ -31,8 +31,8 @@ public class SalleController {
     public void deleteById(@PathVariable("id") Long id){
         salleService.deleteById(id);
     }
-    @PutMapping("/update")
-    public Salle update(@RequestBody Salle salle){
-        return salleService.update(salle);
+    @PutMapping("/{id}")
+    public Salle updateById(@PathVariable("id")Long id, @RequestBody Salle salle){
+        return salleService.updateById(id, salle);
     }
 }

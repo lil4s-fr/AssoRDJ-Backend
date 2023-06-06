@@ -45,11 +45,12 @@ public class CoordonneeService {
     /**
      * Met à jour une coordonnee.
      * @param coordonnee la coordonnee à mettre à jour
+     * @param id l'identifiant de la coordonnee
      * @return la coordonnee mis à jour
      * @throws RuntimeException si la coordonnee n'est pas trouvé
      */
-    public Coordonnee update(Coordonnee coordonnee){
-        Coordonnee coordonneeActuel = coordonneeRepository.findById(coordonnee.getId()).orElse(null);
+    public Coordonnee updateById(Long id, Coordonnee coordonnee){
+        Coordonnee coordonneeActuel = coordonneeRepository.findById(id).orElse(null);
         if (coordonneeActuel != null) {
             coordonneeActuel.setNumeroRue(coordonnee.getNumeroRue());
             coordonneeActuel.setRue(coordonnee.getRue());

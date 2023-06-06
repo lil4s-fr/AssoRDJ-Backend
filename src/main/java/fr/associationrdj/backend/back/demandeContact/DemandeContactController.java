@@ -29,8 +29,8 @@ public class DemandeContactController {
     public void deleteById(@PathVariable("id")Long id){
         demandeContactService.deleteById(id);
     }
-    @PutMapping("/update")
-    public DemandeContact update(@RequestBody DemandeContact demandeContact){
-        return demandeContactService.update(demandeContact);
+    @PutMapping("/{id}")
+    public DemandeContact updateById(@PathVariable("id")Long id, @RequestBody DemandeContact demandeContact){
+        return demandeContactService.updateById(id, demandeContact);
     }
 }
