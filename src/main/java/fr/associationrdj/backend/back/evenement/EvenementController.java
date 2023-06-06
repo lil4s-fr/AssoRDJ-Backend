@@ -29,7 +29,7 @@ public class EvenementController {
     public Evenement save(@RequestBody Evenement evenement){
         return evenementService.save(evenement);
     }
-    @PutMapping("/'{id}")
+    @PutMapping("/{id}")
     public Evenement updateById(@PathVariable("id")Long id, @RequestBody Evenement utilisateur){
         return evenementService.updateById(id, utilisateur);
     }
