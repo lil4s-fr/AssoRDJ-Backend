@@ -1,5 +1,6 @@
 package fr.associationrdj.backend.back.permission;
 
+import fr.associationrdj.backend.back.permission.dto.PermissionDTOFindAll;
 import fr.associationrdj.backend.back.reservation.Reservation;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class PermissionController {
     }
 
     @GetMapping("")
-    public List<Permission> findAll(){
+    public List<PermissionDTOFindAll> findAll(){
         return permissionService.findAll();
     }
     @GetMapping("/{id}")
