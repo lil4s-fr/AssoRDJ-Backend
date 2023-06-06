@@ -1,5 +1,7 @@
 package fr.associationrdj.backend.back.article;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.associationrdj.backend.back.article.dto.ArticleDTOFindAll;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.stereotype.Service;
@@ -13,12 +15,15 @@ import java.util.List;
 @Service
 public class ArticleService {
     private final ArticleRepository articleRepository;
+    private final ObjectMapper objectMapper;
 
-    public ArticleService(ArticleRepository articleRepository) {
+    public ArticleService(ArticleRepository articleRepository, ObjectMapper objectMapper) {
         this.articleRepository = articleRepository;
+        this.objectMapper = objectMapper;
     }
-    public List<Article> findAll(){
-        return articleRepository.findAll();
+    public List<ArticleDTOFindAll> findAll(){
+        List<Article> articles = articleRepository.findAll();
+        return articles.stream().map(article -> objectMapper.convertValue(article, ArticleDTOFindAll.class)).toList();
     }
     public Article findById(Long id){
         return articleRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Article Not-Found") {

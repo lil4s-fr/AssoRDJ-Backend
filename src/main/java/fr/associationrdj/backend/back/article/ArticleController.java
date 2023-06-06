@@ -1,5 +1,6 @@
 package fr.associationrdj.backend.back.article;
 
+import fr.associationrdj.backend.back.article.dto.ArticleDTOFindAll;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class ArticleController {
         this.articleService = articleService;
     }
     @GetMapping("")
-    public List<Article> findAll(){
+    public List<ArticleDTOFindAll> findAll(){
         return articleService.findAll();
     }
     @GetMapping("/{id}")
