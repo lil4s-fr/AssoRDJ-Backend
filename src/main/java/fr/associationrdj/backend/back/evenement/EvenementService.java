@@ -68,7 +68,7 @@ public class EvenementService {
             evenementActuel.setNom(evenement.getNom());
             evenementActuel.setCategories(evenementActuel.getCategories());
             evenementActuel.setDateCreation(evenementActuel.getDateCreation());
-            evenementActuel.setDescritpion(evenement.getDescritpion());
+            evenementActuel.setDescription(evenement.getDescription());
             evenementActuel.setDateFin(evenement.getDateFin());
             evenementActuel.setDateDebut(evenement.getDateDebut());
             return evenementRepository.save(evenement);

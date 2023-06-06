@@ -32,7 +32,7 @@ public class Evenement{
     private LocalDate dateDebut;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateFin;
-    private String descritpion;
+    private String description;
 
 
 }
