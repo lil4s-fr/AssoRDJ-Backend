@@ -86,7 +86,7 @@ public class EvenementService {
     // ICI je re-test en ecrivant la fonction en JSQL ... Mais j'ai pas fini !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public List<Evenement> getDatesCommencantAujourdhui(List<Evenement> evenements) {
         String jpql = "SELECT e.dateDebut FROM Evenement e WHERE FUNCTION('DATE', e.dateDebut) >= FUNCTION('CURRENT_DATE')";
-        evenements = entityManager.createQuery(jpql, evenements.class).getResultList();
+        entityManager.createQuery(jpql, Evenement.class).getResultList();
         return evenements;
     }
 
