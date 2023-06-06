@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class EvenementDTONextThreeEvents {
+public class EvenementDTONextTwoEvents {
 
 
     private Long id;
