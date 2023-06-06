@@ -10,6 +10,6 @@ public class EvenementDTOFindAll {
     private Long id;
     private String nom;
     private Date dateDebut;
-
+    private String description;
 }
 
