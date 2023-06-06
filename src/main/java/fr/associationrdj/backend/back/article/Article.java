@@ -6,7 +6,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -32,8 +34,8 @@ public class Article {
     private List<Utilisateur> utilisateurs;
     private String titre;
     private String corps;
-    private Date date_ecriture;
-    private Date date_modif;
+    private LocalDate date_ecriture;
+    private LocalDate date_modif;
     private String like_dislike;//TODO
 
 
