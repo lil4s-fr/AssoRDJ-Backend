@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.associationrdj.backend.back.evenement.dto.EvenementDTOFindAll;
 import fr.associationrdj.backend.back.evenement.dto.EvenementDTONextEvents;
 
-import fr.associationrdj.backend.back.evenement.dto.EvenementDTONextThreeEvents;
+import fr.associationrdj.backend.back.evenement.dto.EvenementDTONextTwoEvents;
 import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -121,19 +121,19 @@ public class EvenementService {
     }
 
     /**
-     * Retourne les prochains 3 prochains événements à venir .
-     * @return la liste des 3 prochains événements à venir
+     * Retourne les prochains 2 prochains événements à venir .
+     * @return la liste des 2 prochains événements à venir
      */
-    public List<EvenementDTONextThreeEvents> findThreeNextEvents() {
+    public List<EvenementDTONextTwoEvents> findTwoNextEvents() {
         LocalDate dateActuelle = LocalDate.now();
         List<Evenement> evenements = evenementRepository.findAll();
         List<Evenement> evenementsFuturs = evenements.stream()
                 .filter(evenement -> evenement.getDateDebut().isAfter(dateActuelle))
                 .sorted(Comparator.comparing(Evenement::getDateDebut))
-                .limit(3)
+                .limit(2)
                 .collect(Collectors.toList());
         return evenementsFuturs.stream()
-                .map(evenement -> objectMapper.convertValue(evenement, EvenementDTONextThreeEvents.class))
+                .map(evenement -> objectMapper.convertValue(evenement, EvenementDTONextTwoEvents.class))
                 .collect(Collectors.toList());
     }
 }
