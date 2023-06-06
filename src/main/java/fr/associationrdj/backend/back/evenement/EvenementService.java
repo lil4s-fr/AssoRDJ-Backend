@@ -27,21 +27,41 @@ public class EvenementService {
         this.evenementRepository = evenementRepository;
         this.objectMapper = objectMapper;
     }
-
+    /**
+     * Retourne tous les evenements.
+     * @return la liste des evenements filtrer selon EvenementDTOFindAll
+     */
     public List<EvenementDTOFindAll> findAll(){
         List<Evenement> evenements = evenementRepository.findAll();
         return evenements.stream().map(evenement -> objectMapper.convertValue(evenement, EvenementDTOFindAll.class)).toList();
     }
 
+    /**
+     * Retourne un evenement par son identifiant.
+     * @param id l'identifiant de l'evenement
+     * @return l'evenement correspondant à l'identifiant
+     * @throws ResponseStatusException si l'evenement n'est pas trouvé
+     */
     public Evenement findById(Long id){
         return evenementRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Evenement not found"));
     }
 
+    /**
+     * Enregistre un nouveau evenement.
+     * @param evenement l'evenement à enregistrer
+     * @return l'evenement enregistré
+     */
     public Evenement save (Evenement evenement){
         return evenementRepository.save(evenement);
     }
 
+    /**
+     * Met à jour un evenement.
+     * @param evenement l'evenement à mettre à jour
+     * @return l'evenement mis à jour
+     * @throws RuntimeException si l'evenement n'est pas trouvé
+     */
     public Evenement update(Evenement evenement){
         Evenement evenementActuel = evenementRepository.findById(evenement.getId()).orElse(null);
         if (evenementActuel != null) {
@@ -57,6 +77,10 @@ public class EvenementService {
         }
     }
 
+    /**
+     * Supprime un evenement par son identifiant.
+     * @param id l'identifiant de l'evenement à supprimer
+     */
     public void deleteById(Long id){
         evenementRepository.deleteById(id);
     }

@@ -14,20 +14,40 @@ public class CoordonneeService {
     public CoordonneeService(CoordonneeRepository coordonneeRepository) {
         this.coordonneeRepository = coordonneeRepository;
     }
-
+    /**
+     * Retourne toutes les coordonnées.
+     * @return la liste des coordonnées
+     */
     public List<Coordonnee> findAll(){
         return coordonneeRepository.findAll();
     }
 
+    /**
+     * Retourne une coordonnee par son identifiant.
+     * @param id l'identifiant de la coordonnee
+     * @return la coordonnee correspondant à l'identifiant
+     * @throws ResponseStatusException si la coordonnee n'est pas trouvé
+     */
     public Coordonnee findById(Long id){
         return coordonneeRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "coordonnee not found"));
     }
 
+    /**
+     * Enregistre une nouvelle coordonnee.
+     * @param coordonnee la coordonnee à enregistrer
+     * @return la coordonnee enregistré
+     */
     public Coordonnee save (Coordonnee coordonnee){
         return coordonneeRepository.save(coordonnee);
     }
 
+    /**
+     * Met à jour une coordonnee.
+     * @param coordonnee la coordonnee à mettre à jour
+     * @return la coordonnee mis à jour
+     * @throws RuntimeException si la coordonnee n'est pas trouvé
+     */
     public Coordonnee update(Coordonnee coordonnee){
         Coordonnee coordonneeActuel = coordonneeRepository.findById(coordonnee.getId()).orElse(null);
         if (coordonneeActuel != null) {
@@ -42,6 +62,10 @@ public class CoordonneeService {
         }
     }
 
+    /**
+     * Supprime une coordonnee par son identifiant.
+     * @param id l'identifiant de la coordonnee à supprimer
+     */
     public void deleteById(Long id){
         coordonneeRepository.deleteById(id);
     }

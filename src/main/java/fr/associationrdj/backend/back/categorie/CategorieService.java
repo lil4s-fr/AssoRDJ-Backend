@@ -13,18 +13,47 @@ public class CategorieService {
     public CategorieService(CategorieRepository categorieRepository) {
         this.categorieRepository = categorieRepository;
     }
+    /**
+     * Retourne toutes les categories.
+     * @return la liste des categories
+     */
     public List<Categorie> findAll(){
         return categorieRepository.findAll();
     }
+
+    /**
+     * Retourne une categorie par son identifiant.
+     * @param id l'identifiant de la categorie
+     * @return la categorie correspondant à l'identifiant
+     * @throws ResponseStatusException si la categorie n'est pas trouvé
+     */
     public Categorie findById(Long id){
         return categorieRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Categorie Not-Found"));
     }
-   public Categorie save(Categorie categorie){
+
+    /**
+     * Enregistre une nouvelle categorie.
+     * @param categorie la categorie à enregistrer
+     * @return la categorie enregistré
+     */
+    public Categorie save(Categorie categorie){
         return categorieRepository.save(categorie);
     }
+
+    /**
+     * Supprime une categorie par son identifiant.
+     * @param id l'identifiant de la categorie à supprimer
+     */
     public void deleteById(Long id){
         categorieRepository.deleteById(id);
     }
+
+    /**
+     * Met à jour une categorie.
+     * @param categorie la categorie à mettre à jour
+     * @return la categorie mis à jour
+     * @throws RuntimeException si la categorie n'est pas trouvé
+     */
     public Categorie update(Categorie categorie){
         Categorie categorieActuel = categorieRepository.findById(categorie.getId()).orElse(null);
         if(categorie.getId() != null){
