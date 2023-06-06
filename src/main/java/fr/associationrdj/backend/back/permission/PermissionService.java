@@ -18,21 +18,41 @@ public class PermissionService {
         this.permissionRepository = permissionRepository;
         this.objectMapper = objectMapper;
     }
-
+    /**
+     * Retourne toutes les permissions.
+     * @return la liste des permissions filtrer selon PermissionDTOFindAll
+     */
     public List<PermissionDTOFindAll> findAll(){
         List<Permission> permissions = permissionRepository.findAll();
         return permissions.stream().map(permission -> objectMapper.convertValue(permission, PermissionDTOFindAll.class)).toList();
     }
 
+    /**
+     * Retourne une permission par son identifiant.
+     * @param id l'identifiant de la permission
+     * @return la permission correspondant à l'identifiant
+     * @throws ResponseStatusException si la permission n'est pas trouvé
+     */
     public Permission findById(Long id){
         return permissionRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Evenement not found"));
     }
 
+    /**
+     * Enregistre une nouvelle permission.
+     * @param permission la permission à enregistrer
+     * @return la permission enregistré
+     */
     public void save (Permission permission){
         permissionRepository.save(permission);
     }
 
+    /**
+     * Met à jour une permission.
+     * @param permission la permission à mettre à jour
+     * @return la permission mis à jour
+     * @throws RuntimeException si la permission n'est pas trouvé
+     */
     public Permission update(Permission permission){
         Permission permission1Actuel = permissionRepository.findById(permission.getId()).orElse(null);
         if (permission1Actuel != null) {
@@ -44,6 +64,10 @@ public class PermissionService {
         }
     }
 
+    /**
+     * Supprime une permission par son identifiant.
+     * @param id l'identifiant de la permission à supprimer
+     */
     public void deleteById(Long id){
         permissionRepository.deleteById(id);
     }
