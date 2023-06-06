@@ -25,16 +25,15 @@ public class PermissionController {
     public Permission findById(@PathVariable("id") Long id){
         return permissionService.findById(id);
     }
-
     @PostMapping("")
     public void save(@RequestBody Permission permission){
          permissionService.save(permission);
     }
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id")Long id) { permissionService.deleteById(id); }
-    @PutMapping("/update")
-    public Permission update(@RequestBody Permission permission){
-        return permissionService.update(permission);
+    @PutMapping("/{id}")
+    public Permission update(@PathVariable("id)") Long id, @RequestBody Permission permission ){
+        return permissionService.update(id, permission);
     }
 
 }

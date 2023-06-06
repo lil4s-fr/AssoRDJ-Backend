@@ -53,7 +53,7 @@ public class PermissionService {
      * @return la permission mis à jour
      * @throws RuntimeException si la permission n'est pas trouvé
      */
-    public Permission update(Permission permission){
+    public Permission update(Long id, Permission permission){
         Permission permission1Actuel = permissionRepository.findById(permission.getId()).orElse(null);
         if (permission1Actuel != null) {
             permission1Actuel.setUtilisateurs(permission.getUtilisateurs());
