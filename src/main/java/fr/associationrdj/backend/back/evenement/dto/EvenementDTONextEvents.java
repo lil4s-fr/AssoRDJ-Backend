@@ -7,13 +7,12 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class EvenementDTOPostLocalDate {
+public class EvenementDTONextEvents {
 
     private Long id;
     private List<Categorie> categories;
     private String nom;
     private Date dateDebut;
     private Date dateFin;
-    private String descritpion;
 
 }

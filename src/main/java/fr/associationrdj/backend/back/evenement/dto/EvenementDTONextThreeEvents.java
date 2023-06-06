@@ -1,11 +1,13 @@
 package fr.associationrdj.backend.back.evenement.dto;
 
 import fr.associationrdj.backend.back.categorie.Categorie;
+import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
 
-public class EvenementDTOFirstThreeValues {
+@Data
+public class EvenementDTONextThreeEvents {
 
 
     private Long id;

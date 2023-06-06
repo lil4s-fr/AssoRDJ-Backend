@@ -2,8 +2,9 @@ package fr.associationrdj.backend.back.evenement;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.associationrdj.backend.back.evenement.dto.EvenementDTOFindAll;
-import fr.associationrdj.backend.back.evenement.dto.EvenementDTOPostLocalDate;
+import fr.associationrdj.backend.back.evenement.dto.EvenementDTONextEvents;
 
+import fr.associationrdj.backend.back.evenement.dto.EvenementDTONextThreeEvents;
 import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -61,9 +62,9 @@ public class EvenementService {
     }
 
     /**
-     * Tri une liste d'évènements par ordre de date croissante.
-     * @param evenements
-     * @return evenements
+     * Trie une liste d'évènements par ordre de date croissante.
+     * @param evenements la liste d'évènements à trier
+     * @return la liste d'évènements triée par date croissante
      */
     public List<Evenement> trierDatesCroissant(List<Evenement> evenements){
         evenements.sort(Comparator.comparing(Evenement::getDateDebut));
@@ -71,8 +72,9 @@ public class EvenementService {
     }
 
     /**
-     *Filtre une liste d'evenements en retournant que les evenements postérieur à la date actuelle.
-     * @return evenements
+     * Filtre une liste d'évènements en ne conservant que les évènements postérieurs à la date actuelle.
+     * @param evenements la liste d'évènements à filtrer
+     * @return la liste des évènements futurs
      */
     public List<Evenement> findEvenementsFuturs(List<Evenement> evenements) {
         LocalDate dateActuelle = LocalDate.now();
@@ -82,16 +84,32 @@ public class EvenementService {
     }
 
     /**
-     * Retourne la liste des evenements à venir
-     * @return
+     * Retourne la liste des événements à venir.
+     * @return la liste des événements à venir
      */
-    public List<EvenementDTOPostLocalDate> findAllPostLocalDate(){
+    public List<EvenementDTONextEvents> findAllPostLocalDate(){
         List<Evenement> evenements = evenementRepository.findAll();
         List<Evenement> evenementsFuturs = findEvenementsFuturs(evenements);
         List<Evenement> evenementsTries = trierDatesCroissant(evenementsFuturs);
         return evenementsTries.stream()
-                .map(evenement -> objectMapper.convertValue(evenement, EvenementDTOPostLocalDate.class))
+                .map(evenement -> objectMapper.convertValue(evenement, EvenementDTONextEvents.class))
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retourne les prochains 3 prochains événements à venir .
+     * @return la liste des 3 prochains événements à venir
+     */
+    public List<EvenementDTONextThreeEvents> findThreeNextEvents() {
+        LocalDate dateActuelle = LocalDate.now();
+        List<Evenement> evenements = evenementRepository.findAll();
+        List<Evenement> evenementsFuturs = evenements.stream()
+                .filter(evenement -> evenement.getDateDebut().isAfter(dateActuelle))
+                .sorted(Comparator.comparing(Evenement::getDateDebut))
+                .limit(3)
+                .collect(Collectors.toList());
+        return evenementsFuturs.stream()
+                .map(evenement -> objectMapper.convertValue(evenement, EvenementDTONextThreeEvents.class))
+                .collect(Collectors.toList());
+    }
 }
