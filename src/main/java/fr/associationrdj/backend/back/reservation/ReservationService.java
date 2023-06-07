@@ -65,7 +65,6 @@ public class ReservationService {
         Reservation reservationActuel = reservationRepository.findById(id).orElse(null);
         if (reservationActuel != null){
             reservationActuel.setDate_reservation(reservation.getDate_reservation());
-            reservationActuel.setCreneau(reservation.getCreneau());
             reservationActuel.setUtilisateurs(reservation.getUtilisateurs());
             reservationActuel.setDescription(reservation.getDescription());
             reservationActuel.setSalle(reservation.getSalle());

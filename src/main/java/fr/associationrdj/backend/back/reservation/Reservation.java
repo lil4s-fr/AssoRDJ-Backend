@@ -29,8 +29,7 @@ public class Reservation {
     private List<Utilisateur> utilisateurs;
     private int participant;
     private boolean validation;
-    private Date date_reservation;
-    private LocalDate creneau;
-    private Date date_evenement;
+    private LocalDate date_reservation;
+    private LocalDate date_evenement;
     private String description;
 }

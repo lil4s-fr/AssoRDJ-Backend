@@ -15,6 +15,6 @@ public class ReservationDTOFindAll {
     private Long id;
     private Salle salle;
     private boolean validation;
-    private Date date_evenement;
+    private LocalDate date_evenement;
 
 }
