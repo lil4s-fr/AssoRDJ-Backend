@@ -56,14 +56,10 @@ public class CategorieService {
      * @throws RuntimeException si la categorie n'est pas trouvé
      */
     public Categorie updateById(Long id, Categorie categorie){
-        Categorie categorieActuel = categorieRepository.findById(id).orElse(null);
-        if(categorie.getId() != null){
-            categorieActuel.setNom(categorie.getNom());
-            categorieActuel.setDescription(categorie.getDescription());
-            categorieActuel.setReservations(categorie.getReservations());
-            return categorieRepository.save(categorie);
-        }else{
-            throw new RuntimeException("Categorie Not-Found");
-        }
+        Categorie categorieActuel = categorieRepository.findById(id).orElseThrow(() -> new RuntimeException("Categorie not found for id: " + id));
+        categorieActuel.setNom(categorie.getNom());
+        categorieActuel.setDescription(categorie.getDescription());
+        categorieActuel.setReservations(categorie.getReservations());
+        return categorieRepository.save(categorieActuel);
     }
 }
