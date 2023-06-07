@@ -57,21 +57,17 @@ public class UtilisateurService {
      * @throws RuntimeException si l'utilisateur n'est pas trouvé
      */
     public Utilisateur updateById(Long id, Utilisateur utilisateur){
-        Utilisateur utilisateurActuel = utilisateurRepository.findById(id).orElse(null);
-        if (utilisateurActuel != null) {
-            utilisateurActuel.setNom(utilisateur.getNom());
-            utilisateurActuel.setPrenom(utilisateur.getPrenom());
-            utilisateurActuel.setNumeroAdherent(utilisateur.getNumeroAdherent());
-            utilisateurActuel.setPseudo(utilisateur.getPseudo());
-            utilisateurActuel.setEmail(utilisateur.getEmail());
-            utilisateurActuel.setNumeroTelephone(utilisateur.getNumeroTelephone());
-            utilisateurActuel.setHashMotDePasse(utilisateur.getHashMotDePasse());
-            utilisateurActuel.setCoordonnees(utilisateur.getCoordonnees());
-            utilisateurActuel.setCategories(utilisateur.getCategories());
-            return utilisateurRepository.save(utilisateur);
-        } else {
-            throw new RuntimeException("Utilisateur not found for id : " + utilisateur.getId());
-        }
+        Utilisateur utilisateurActuel = utilisateurRepository.findById(id).orElseThrow(() -> new RuntimeException("Demande de contact not found for id: " + id));
+        utilisateurActuel.setNom(utilisateur.getNom());
+        utilisateurActuel.setPrenom(utilisateur.getPrenom());
+        utilisateurActuel.setNumeroAdherent(utilisateur.getNumeroAdherent());
+        utilisateurActuel.setPseudo(utilisateur.getPseudo());
+        utilisateurActuel.setEmail(utilisateur.getEmail());
+        utilisateurActuel.setNumeroTelephone(utilisateur.getNumeroTelephone());
+        utilisateurActuel.setHashMotDePasse(utilisateur.getHashMotDePasse());
+        utilisateurActuel.setCoordonnees(utilisateur.getCoordonnees());
+        utilisateurActuel.setCategories(utilisateur.getCategories());
+        return utilisateurRepository.save(utilisateurActuel);
     }
 
     /**
