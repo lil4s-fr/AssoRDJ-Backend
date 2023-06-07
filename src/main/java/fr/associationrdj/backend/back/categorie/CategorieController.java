@@ -30,7 +30,7 @@ public class CategorieController {
         categorieService.deleteById(id);
     }
     @PutMapping("/{id}")
-    public Categorie updateById(@PathVariable("id")Long id,  Categorie categorie){
+    public Categorie updateById(@PathVariable("id")Long id, @RequestBody Categorie categorie){
         return categorieService.updateById(id, categorie);
     }
 }

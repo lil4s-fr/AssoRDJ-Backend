@@ -16,5 +16,6 @@ public class ReservationDTOFindAll {
     private Salle salle;
     private boolean validation;
     private LocalDate date_evenement;
+    private String crenau;
 
 }

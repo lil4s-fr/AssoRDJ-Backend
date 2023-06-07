@@ -35,7 +35,7 @@ public class ArticleController {
     public Article updateById(@PathVariable("id") Long id, @RequestBody Article article){
         return articleService.updateById(id, article);
     }
-    @GetMapping("/threeLastArticle")
+    @GetMapping("/threelastarticles")
     public List<ArticleDTOThreeLastArticle> threeLastArticles(){
         return articleService.threeLastArticle();
     }
