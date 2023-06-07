@@ -3,7 +3,6 @@ package fr.associationrdj.backend.back.utilisateur.dto;
 import fr.associationrdj.backend.back.categorie.Categorie;
 import fr.associationrdj.backend.back.coordonnee.Coordonnee;
 import fr.associationrdj.backend.back.permission.Permission;
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
@@ -14,7 +13,7 @@ public class UtilisateurDTOSansMDP {
     private Long id;
     private String nom;
     private String prenom;
-    private int numeroAdherent;
+    private String numeroAdherent;
     private String pseudo;
     private String email;
     private String numeroTelephone;
