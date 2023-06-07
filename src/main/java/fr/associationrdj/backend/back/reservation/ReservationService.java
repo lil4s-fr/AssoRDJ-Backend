@@ -62,17 +62,13 @@ public class ReservationService {
      * @throws RuntimeException si la reservation n'est pas trouvé
      */
     public Reservation updateById(Long id, Reservation reservation){
-        Reservation reservationActuel = reservationRepository.findById(id).orElse(null);
-        if (reservationActuel != null){
-            reservationActuel.setDate_reservation(reservation.getDate_reservation());
-            reservationActuel.setUtilisateurs(reservation.getUtilisateurs());
-            reservationActuel.setDescription(reservation.getDescription());
-            reservationActuel.setSalle(reservation.getSalle());
-            reservationActuel.setValidation(reservation.isValidation());
-            reservationActuel.setDate_evenement(reservation.getDate_evenement());
-            return reservationRepository.save(reservation);
-        }else {
-            throw new RuntimeException("Reservation not found for id : ");
-        }
+        Reservation reservationActuel = reservationRepository.findById(id).orElseThrow(() -> new RuntimeException("Demande de contact not found for id: " + id));
+        reservationActuel.setDate_reservation(reservation.getDate_reservation());
+        reservationActuel.setUtilisateurs(reservation.getUtilisateurs());
+        reservationActuel.setDescription(reservation.getDescription());
+        reservationActuel.setSalle(reservation.getSalle());
+        reservationActuel.setValidation(reservation.isValidation());
+        reservationActuel.setDate_evenement(reservation.getDate_evenement());
+        return reservationRepository.save(reservationActuel);
     }
 }

@@ -62,15 +62,11 @@ public class SalleService {
      * @throws RuntimeException si la salle n'est pas trouvé
      */
     public Salle updateById (Long id, Salle salle){
-        Salle salleActuel = salleRepository.findById(id).orElse(null);
-        if (salle.getId() != null){
-            salleActuel.setNom(salle.getNom());
-            salleActuel.setCapacite(salle.getCapacite());
-            salleActuel.setLieu(salle.getLieu());
-            salleActuel.setAcces_pmr(salle.isAcces_pmr());
-            return salleRepository.save(salle);
-        }else {
-            throw new RuntimeException("Salle Not-Found");
-        }
+        Salle salleActuel = salleRepository.findById(id).orElseThrow(() -> new RuntimeException("Demande de contact not found for id: " + id));
+        salleActuel.setNom(salle.getNom());
+        salleActuel.setCapacite(salle.getCapacite());
+        salleActuel.setLieu(salle.getLieu());
+        salleActuel.setAcces_pmr(salle.isAcces_pmr());
+        return salleRepository.save(salleActuel);
     }
 }
