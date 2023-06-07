@@ -21,11 +21,7 @@ public class Reservation {
     private Long id;
     @ManyToOne
     private Salle salle;
-    @ManyToMany
-    @JoinTable(
-            name = "reservation_utilisateur",
-            joinColumns = @JoinColumn(name = "reservation_id"),
-            inverseJoinColumns = @JoinColumn(name = "utilisateur_id"))
+    @OneToMany
     private List<Utilisateur> utilisateurs;
     private int participant;
     private boolean validation;
