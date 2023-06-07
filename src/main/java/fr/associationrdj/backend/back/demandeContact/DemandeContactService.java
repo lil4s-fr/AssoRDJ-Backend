@@ -57,15 +57,11 @@ public class DemandeContactService {
      * @throws RuntimeException si la demande de contact n'est pas trouvé
      */
     public DemandeContact updateById(Long id, DemandeContact demandeContact){
-        DemandeContact demandeContactActuel = demandeContactRepository.findById(id).orElse(null);
-        if (demandeContact.getId() != null){
+        DemandeContact demandeContactActuel = demandeContactRepository.findById(id).orElseThrow(() -> new RuntimeException("Demande de contact not found for id: " + id));
             demandeContactActuel.setUtilisateur(demandeContact.getUtilisateur());
             demandeContactActuel.setTypeDemande(demandeContact.getTypeDemande());
             demandeContactActuel.setMail(demandeContact.getMail());
             demandeContactActuel.setMessage(demandeContact.getMessage());
-            return demandeContactRepository.save(demandeContact);
-        }else {
-            throw new RuntimeException("DemandeContact Not Found");
-        }
+            return demandeContactRepository.save(demandeContactActuel);
     }
 }

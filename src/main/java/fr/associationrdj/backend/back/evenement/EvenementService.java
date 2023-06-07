@@ -64,18 +64,14 @@ public class EvenementService {
      * @throws RuntimeException si l'evenement n'est pas trouvé
      */
     public Evenement updateById(Long id, Evenement evenement){
-        Evenement evenementActuel = evenementRepository.findById(id).orElse(null);
-        if (evenementActuel != null) {
+        Evenement evenementActuel = evenementRepository.findById(id).orElseThrow(() -> new RuntimeException("Demande de contact not found for id: " + id));
             evenementActuel.setNom(evenement.getNom());
             evenementActuel.setCategories(evenementActuel.getCategories());
             evenementActuel.setDateCreation(evenementActuel.getDateCreation());
             evenementActuel.setDescription(evenement.getDescription());
             evenementActuel.setDateFin(evenement.getDateFin());
             evenementActuel.setDateDebut(evenement.getDateDebut());
-            return evenementRepository.save(evenement);
-        } else {
-            throw new RuntimeException("Evenement not found for id : " + evenement.getId());
-        }
+            return evenementRepository.save(evenementActuel);
     }
 
     /**
