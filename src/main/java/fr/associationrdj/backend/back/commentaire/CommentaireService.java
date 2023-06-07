@@ -50,16 +50,12 @@ public class CommentaireService {
      * @throws RuntimeException si le commentaire n'est pas trouvé
      */
     public Commentaire updateById(Long id, Commentaire commentaire){
-        Commentaire commentaireActuel = commentaireRepository.findById(id).orElse(null);
-        if (commentaireActuel != null) {
-            commentaireActuel.setCommentaire(commentaire.getCommentaire());
-            commentaireActuel.setArticle(commentaire.getArticle());
-            commentaireActuel.setUtilisateur(commentaire.getUtilisateur());
-            commentaireActuel.setLike_dislike(commentaire.getLike_dislike());
-            return commentaireRepository.save(commentaire);
-        } else {
-            throw new RuntimeException("Commentaire not found for id : " + commentaire.getId());
-        }
+        Commentaire commentaireActuel = commentaireRepository.findById(id).orElseThrow(() -> new RuntimeException("Commentaire not found for id: " + id));
+        commentaireActuel.setCommentaire(commentaire.getCommentaire());
+        commentaireActuel.setArticle(commentaire.getArticle());
+        commentaireActuel.setUtilisateur(commentaire.getUtilisateur());
+        commentaireActuel.setLike_dislike(commentaire.getLike_dislike());
+        return commentaireRepository.save(commentaireActuel);
     }
 
     /**

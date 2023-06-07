@@ -27,6 +27,6 @@ public class Reservation {
     private boolean validation;
     private LocalDate date_reservation;
     private LocalDate date_evenement;
-    private String crenau;
+    private String creneau;
     private String description;
 }
