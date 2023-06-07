@@ -20,7 +20,7 @@ public class Utilisateur {
     private Long id;
     private String nom;
     private String prenom;
-    private int numeroAdherent;
+    private String numeroAdherent;
     private String pseudo;
     private String email;
     private String numeroTelephone;

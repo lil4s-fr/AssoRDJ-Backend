@@ -8,5 +8,6 @@ public class UtilisateurDTOFindAll {
     private String nom;
     private String prenom;
     private String pseudo;
+    private String numeroAdherent;
 
 }
