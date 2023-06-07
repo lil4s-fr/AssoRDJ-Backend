@@ -50,17 +50,13 @@ public class CoordonneeService {
      * @throws RuntimeException si la coordonnee n'est pas trouvé
      */
     public Coordonnee updateById(Long id, Coordonnee coordonnee){
-        Coordonnee coordonneeActuel = coordonneeRepository.findById(id).orElse(null);
-        if (coordonneeActuel != null) {
+        Coordonnee coordonneeActuel = coordonneeRepository.findById(id).orElseThrow(() -> new RuntimeException("Coordonnees not found for id: " + id));
             coordonneeActuel.setNumeroRue(coordonnee.getNumeroRue());
             coordonneeActuel.setRue(coordonnee.getRue());
             coordonneeActuel.setComplementAdresse(coordonnee.getComplementAdresse());
             coordonneeActuel.setCodePostal(coordonnee.getCodePostal());
             coordonneeActuel.setVille(coordonnee.getVille());
-            return coordonneeRepository.save(coordonnee);
-        } else {
-            throw new RuntimeException("Coordonnées not found for id : " + coordonnee.getId());
-        }
+            return coordonneeRepository.save(coordonneeActuel);
     }
 
     /**
