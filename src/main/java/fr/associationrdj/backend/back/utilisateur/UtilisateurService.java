@@ -67,6 +67,7 @@ public class UtilisateurService {
         utilisateurActuel.setHashMotDePasse(utilisateur.getHashMotDePasse());
         utilisateurActuel.setCoordonnees(utilisateur.getCoordonnees());
         utilisateurActuel.setCategories(utilisateur.getCategories());
+        utilisateurActuel.setPermission(utilisateur.getPermission());
         return utilisateurRepository.save(utilisateurActuel);
     }
 
