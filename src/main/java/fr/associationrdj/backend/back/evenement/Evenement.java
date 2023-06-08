@@ -1,7 +1,6 @@
 package fr.associationrdj.backend.back.evenement;
 
 import fr.associationrdj.backend.back.categorie.Categorie;
-import fr.associationrdj.backend.back.coordonnee.Coordonnee;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,7 +32,6 @@ public class Evenement{
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateFin;
     private String description;
-    @ManyToOne
-    private Coordonnee coordonnee;
+    private String lieu;
 
 }

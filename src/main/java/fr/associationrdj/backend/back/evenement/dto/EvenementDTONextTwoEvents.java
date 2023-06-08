@@ -16,4 +16,5 @@ public class EvenementDTONextTwoEvents {
     private Date dateDebut;
     private Date dateFin;
     private String description;
+    private String lieu;
 }
