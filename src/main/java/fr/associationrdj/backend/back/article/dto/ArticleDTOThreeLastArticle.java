@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class ArticleDTOThreeLastArticle {
     private Long id;
-    private String nom;
+    private String titre;
     private List<Categorie> categories;
     private List<Utilisateur> utilisateurs;
     private LocalDate date_ecriture;

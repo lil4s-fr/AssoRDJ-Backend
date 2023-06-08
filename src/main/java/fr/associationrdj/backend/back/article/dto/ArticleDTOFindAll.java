@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class ArticleDTOFindAll {
     private Long id;
-    private String nom;
+    private String titre;
     private List<Categorie> categories;
     private LocalDate date_ecriture;
 }
