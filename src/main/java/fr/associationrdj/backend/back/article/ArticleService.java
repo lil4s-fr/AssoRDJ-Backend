@@ -67,12 +67,12 @@ public class ArticleService {
      */
     public Article updateById(Long id, Article article){
         Article articleActuel = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found for id: " + id));
-        articleActuel.setTitre(article.getTitre());
-        articleActuel.setCorps(article.getCorps());
-        articleActuel.setCategories(article.getCategories());
-        articleActuel.setUtilisateurs(article.getUtilisateurs());
-        articleActuel.setDate_modif(article.getDate_modif());
-        articleActuel.setLike_dislike(article.getLike_dislike());
+        articleActuel.setTitre(article.getTitre() == null ? articleActuel.getTitre() : article.getTitre());
+        articleActuel.setCorps(article.getCorps() == null ? articleActuel.getCorps() : article.getCorps());
+        articleActuel.setCategories(article.getCategories() == null ? articleActuel.getCategories() : article.getCategories());
+        articleActuel.setUtilisateurs(article.getUtilisateurs() == null ? articleActuel.getUtilisateurs() : article.getUtilisateurs());
+        articleActuel.setDate_modif(article.getDate_modif() == null ? articleActuel.getDate_modif() : article.getDate_modif());
+        articleActuel.setLike_dislike(article.getLike_dislike() == null ? articleActuel.getLike_dislike() : article.getLike_dislike());
         return articleRepository.save(articleActuel);
     }
     /**

@@ -57,17 +57,17 @@ public class UtilisateurService {
      * @throws RuntimeException si l'utilisateur n'est pas trouvé
      */
     public Utilisateur updateById(Long id, Utilisateur utilisateur){
-        Utilisateur utilisateurActuel = utilisateurRepository.findById(id).orElseThrow(() -> new RuntimeException("Demande de contact not found for id: " + id));
-        utilisateurActuel.setNom(utilisateur.getNom());
-        utilisateurActuel.setPrenom(utilisateur.getPrenom());
-        utilisateurActuel.setNumeroAdherent(utilisateur.getNumeroAdherent());
-        utilisateurActuel.setPseudo(utilisateur.getPseudo());
-        utilisateurActuel.setEmail(utilisateur.getEmail());
-        utilisateurActuel.setNumeroTelephone(utilisateur.getNumeroTelephone());
-        utilisateurActuel.setHashMotDePasse(utilisateur.getHashMotDePasse());
-        utilisateurActuel.setCoordonnees(utilisateur.getCoordonnees());
-        utilisateurActuel.setCategories(utilisateur.getCategories());
-        utilisateurActuel.setPermission(utilisateur.getPermission());
+        Utilisateur utilisateurActuel = utilisateurRepository.findById(id).orElseThrow(() -> new RuntimeException("Utilisateur not found for id: " + id));
+        utilisateurActuel.setNom(utilisateur.getNom() == null ? utilisateurActuel.getNom() : utilisateur.getNom());
+        utilisateurActuel.setPrenom(utilisateur.getPrenom() == null ? utilisateurActuel.getPrenom() : utilisateur.getPrenom());
+        utilisateurActuel.setNumeroAdherent(utilisateur.getNumeroAdherent() == null ? utilisateurActuel.getNumeroAdherent() : utilisateur.getNumeroAdherent());
+        utilisateurActuel.setPseudo(utilisateur.getPseudo() == null ? utilisateurActuel.getPseudo() : utilisateur.getPseudo());
+        utilisateurActuel.setEmail(utilisateur.getEmail() == null ? utilisateurActuel.getEmail() : utilisateur.getEmail());
+        utilisateurActuel.setNumeroTelephone(utilisateur.getNumeroTelephone() == null ? utilisateurActuel.getNumeroTelephone() : utilisateur.getNumeroTelephone());
+        utilisateurActuel.setHashMotDePasse(utilisateur.getHashMotDePasse() == null ? utilisateurActuel.getHashMotDePasse() : utilisateur.getHashMotDePasse());
+        utilisateurActuel.setCoordonnees(utilisateur.getCoordonnees() == null ? utilisateurActuel.getCoordonnees() : utilisateur.getCoordonnees());
+        utilisateurActuel.setCategories(utilisateur.getCategories() == null ? utilisateurActuel.getCategories() : utilisateur.getCategories());
+        utilisateurActuel.setPermission(utilisateur.getPermission() == null ? utilisateurActuel.getPermission() : utilisateur.getPermission());
         return utilisateurRepository.save(utilisateurActuel);
     }
 

@@ -64,13 +64,13 @@ public class EvenementService {
      * @throws RuntimeException si l'evenement n'est pas trouvé
      */
     public Evenement updateById(Long id, Evenement evenement){
-        Evenement evenementActuel = evenementRepository.findById(id).orElseThrow(() -> new RuntimeException("Demande de contact not found for id: " + id));
-            evenementActuel.setNom(evenement.getNom());
-            evenementActuel.setCategories(evenementActuel.getCategories());
-            evenementActuel.setDateCreation(evenementActuel.getDateCreation());
-            evenementActuel.setDescription(evenement.getDescription());
-            evenementActuel.setDateFin(evenement.getDateFin());
-            evenementActuel.setDateDebut(evenement.getDateDebut());
+        Evenement evenementActuel = evenementRepository.findById(id).orElseThrow(() -> new RuntimeException("Evenement not found for id: " + id));
+            evenementActuel.setNom(evenement.getNom() == null ? evenementActuel.getNom() : evenement.getNom());
+            evenementActuel.setCategories(evenementActuel.getCategories() == null ? evenementActuel.getCategories() : evenement.getCategories());
+            evenementActuel.setDateCreation(evenementActuel.getDateCreation() == null ? evenementActuel.getDateCreation() : evenement.getDateCreation());
+            evenementActuel.setDescription(evenement.getDescription() == null ? evenementActuel.getDescription() : evenement.getDescription());
+            evenementActuel.setDateFin(evenement.getDateFin() == null ? evenementActuel.getDateFin() : evenement.getDateFin());
+            evenementActuel.setDateDebut(evenement.getDateDebut() == null ? evenementActuel.getDateDebut() : evenement.getDateDebut());
             return evenementRepository.save(evenementActuel);
     }
 

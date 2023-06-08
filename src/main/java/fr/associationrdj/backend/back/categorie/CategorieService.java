@@ -57,9 +57,9 @@ public class CategorieService {
      */
     public Categorie updateById(Long id, Categorie categorie){
         Categorie categorieActuel = categorieRepository.findById(id).orElseThrow(() -> new RuntimeException("Categorie not found for id: " + id));
-        categorieActuel.setNom(categorie.getNom());
-        categorieActuel.setDescription(categorie.getDescription());
-        categorieActuel.setReservations(categorie.getReservations());
+        categorieActuel.setNom(categorie.getNom() == null ? categorieActuel.getNom() : categorie.getNom());
+        categorieActuel.setDescription(categorie.getDescription() == null ? categorieActuel.getDescription() : categorie.getDescription());
+        categorieActuel.setReservations(categorie.getReservations() == null ? categorieActuel.getReservations() : categorie.getReservations());
         return categorieRepository.save(categorieActuel);
     }
 }
