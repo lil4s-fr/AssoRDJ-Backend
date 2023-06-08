@@ -55,9 +55,9 @@ public class PermissionService {
      * @throws RuntimeException si la permission n'est pas trouvé
      */
     public Permission updateById(Long id, Permission permission) {
-        Permission permissionActuelle = permissionRepository.findById(id).orElseThrow(() -> new RuntimeException("Demande de contact not found for id: " + id));
-        permissionActuelle.setUtilisateurs(permission.getUtilisateurs());
-        permissionActuelle.setStatut(permission.getStatut());
+        Permission permissionActuelle = permissionRepository.findById(id).orElseThrow(() -> new RuntimeException("Permission not found for id: " + id));
+        permissionActuelle.setUtilisateurs(permission.getUtilisateurs() == null ? permissionActuelle.getUtilisateurs() : permission.getUtilisateurs());
+        permissionActuelle.setStatut(permission.getStatut() == null ? permissionActuelle.getStatut() : permission.getStatut());
         return permissionRepository.save(permissionActuelle);
     }
 

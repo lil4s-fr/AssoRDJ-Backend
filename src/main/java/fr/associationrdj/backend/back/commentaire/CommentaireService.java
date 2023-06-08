@@ -51,10 +51,10 @@ public class CommentaireService {
      */
     public Commentaire updateById(Long id, Commentaire commentaire){
         Commentaire commentaireActuel = commentaireRepository.findById(id).orElseThrow(() -> new RuntimeException("Commentaire not found for id: " + id));
-        commentaireActuel.setCommentaire(commentaire.getCommentaire());
-        commentaireActuel.setArticle(commentaire.getArticle());
-        commentaireActuel.setUtilisateur(commentaire.getUtilisateur());
-        commentaireActuel.setLike_dislike(commentaire.getLike_dislike());
+        commentaireActuel.setCommentaire(commentaire.getCommentaire() == null ? commentaireActuel.getCommentaire() : commentaire.getCommentaire());
+        commentaireActuel.setArticle(commentaire.getArticle() == null ? commentaireActuel.getArticle() : commentaire.getArticle());
+        commentaireActuel.setUtilisateur(commentaire.getUtilisateur() == null ? commentaireActuel.getUtilisateur() : commentaire.getUtilisateur());
+        commentaireActuel.setLike_dislike(commentaire.getLike_dislike() == null ? commentaireActuel.getLike_dislike() : commentaire.getLike_dislike());
         return commentaireRepository.save(commentaireActuel);
     }
 

@@ -62,13 +62,13 @@ public class ReservationService {
      * @throws RuntimeException si la reservation n'est pas trouvé
      */
     public Reservation updateById(Long id, Reservation reservation){
-        Reservation reservationActuel = reservationRepository.findById(id).orElseThrow(() -> new RuntimeException("Demande de contact not found for id: " + id));
-        reservationActuel.setDate_reservation(reservation.getDate_reservation());
-        reservationActuel.setUtilisateurs(reservation.getUtilisateurs());
-        reservationActuel.setDescription(reservation.getDescription());
-        reservationActuel.setSalle(reservation.getSalle());
+        Reservation reservationActuel = reservationRepository.findById(id).orElseThrow(() -> new RuntimeException("Reservation not found for id: " + id));
+        reservationActuel.setDate_reservation(reservation.getDate_reservation() == null ? reservationActuel.getDate_reservation() : reservation.getDate_reservation());
+        reservationActuel.setUtilisateurs(reservation.getUtilisateurs() == null ? reservationActuel.getUtilisateurs() : reservation.getUtilisateurs());
+        reservationActuel.setDescription(reservation.getDescription() == null ? reservationActuel.getDescription() : reservation.getDescription());
+        reservationActuel.setSalle(reservation.getSalle() == null ? reservationActuel.getSalle() : reservation.getSalle());
         reservationActuel.setValidation(reservation.isValidation());
-        reservationActuel.setDate_evenement(reservation.getDate_evenement());
+        reservationActuel.setDate_evenement(reservation.getDate_evenement() == null ? reservationActuel.getDate_evenement() : reservation.getDate_evenement());
         return reservationRepository.save(reservationActuel);
     }
 }

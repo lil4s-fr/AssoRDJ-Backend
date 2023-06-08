@@ -51,11 +51,11 @@ public class CoordonneeService {
      */
     public Coordonnee updateById(Long id, Coordonnee coordonnee){
         Coordonnee coordonneeActuel = coordonneeRepository.findById(id).orElseThrow(() -> new RuntimeException("Coordonnees not found for id: " + id));
-            coordonneeActuel.setNumeroRue(coordonnee.getNumeroRue());
-            coordonneeActuel.setRue(coordonnee.getRue());
-            coordonneeActuel.setComplementAdresse(coordonnee.getComplementAdresse());
-            coordonneeActuel.setCodePostal(coordonnee.getCodePostal());
-            coordonneeActuel.setVille(coordonnee.getVille());
+            coordonneeActuel.setNumeroRue(coordonnee.getNumeroRue() == null ? coordonneeActuel.getNumeroRue() : coordonnee.getNumeroRue());
+            coordonneeActuel.setRue(coordonnee.getRue() == null ? coordonneeActuel.getRue() : coordonnee.getRue());
+            coordonneeActuel.setComplementAdresse(coordonnee.getComplementAdresse() == null ? coordonneeActuel.getComplementAdresse() : coordonnee.getComplementAdresse());
+            coordonneeActuel.setCodePostal(coordonnee.getCodePostal() <= 0 ? coordonneeActuel.getCodePostal() : coordonnee.getCodePostal());
+            coordonneeActuel.setVille(coordonnee.getVille() == null ? coordonneeActuel.getVille() : coordonnee.getVille());
             return coordonneeRepository.save(coordonneeActuel);
     }
 

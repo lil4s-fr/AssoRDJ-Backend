@@ -58,8 +58,8 @@ public class TypeDemandeService {
      * @throws RuntimeException si le type de demande n'est pas trouvé
      */
     public TypeDemande updateById(Long id, TypeDemande typeDemande){
-        TypeDemande typeDemandeActuel = typeDemandeRepository.findById(id).orElseThrow(() -> new RuntimeException("Demande de contact not found for id: " + id));
-        typeDemandeActuel.setNom_type(typeDemande.getNom_type());
+        TypeDemande typeDemandeActuel = typeDemandeRepository.findById(id).orElseThrow(() -> new RuntimeException("Type de demande not found for id: " + id));
+        typeDemandeActuel.setNom_type(typeDemande.getNom_type() == null ? typeDemandeActuel.getNom_type() : typeDemande.getNom_type());
         return typeDemandeRepository.save(typeDemandeActuel);
     }
 }

@@ -58,10 +58,10 @@ public class DemandeContactService {
      */
     public DemandeContact updateById(Long id, DemandeContact demandeContact){
         DemandeContact demandeContactActuel = demandeContactRepository.findById(id).orElseThrow(() -> new RuntimeException("Demande de contact not found for id: " + id));
-            demandeContactActuel.setUtilisateur(demandeContact.getUtilisateur());
-            demandeContactActuel.setTypeDemande(demandeContact.getTypeDemande());
-            demandeContactActuel.setMail(demandeContact.getMail());
-            demandeContactActuel.setMessage(demandeContact.getMessage());
+            demandeContactActuel.setUtilisateur(demandeContact.getUtilisateur() == null ? demandeContactActuel.getUtilisateur() : demandeContact.getUtilisateur());
+            demandeContactActuel.setTypeDemande(demandeContact.getTypeDemande() == null ?demandeContactActuel.getTypeDemande() : demandeContact.getTypeDemande());
+            demandeContactActuel.setMail(demandeContact.getMail() == null ? demandeContactActuel.getMail() : demandeContact.getMail());
+            demandeContactActuel.setMessage(demandeContact.getMessage() == null ? demandeContactActuel.getMessage() : demandeContact.getMessage());
             return demandeContactRepository.save(demandeContactActuel);
     }
 }
