@@ -11,5 +11,6 @@ public class EvenementDTOFindAll {
     private String nom;
     private Date dateDebut;
     private String description;
+    private String lieu;
 }
 

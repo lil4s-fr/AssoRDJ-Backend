@@ -14,5 +14,6 @@ public class EvenementDTONextEvents {
     private String nom;
     private Date dateDebut;
     private Date dateFin;
+    private String lieu;
 
 }
