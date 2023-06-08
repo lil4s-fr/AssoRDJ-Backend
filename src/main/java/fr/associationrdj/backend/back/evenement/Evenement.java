@@ -1,13 +1,13 @@
 package fr.associationrdj.backend.back.evenement;
 
 import fr.associationrdj.backend.back.categorie.Categorie;
+import fr.associationrdj.backend.back.coordonnee.Coordonnee;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -33,6 +33,7 @@ public class Evenement{
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateFin;
     private String description;
-
+    @ManyToOne
+    private Coordonnee coordonnee;
 
 }
