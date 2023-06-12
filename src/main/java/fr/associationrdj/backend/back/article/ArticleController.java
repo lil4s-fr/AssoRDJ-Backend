@@ -1,7 +1,7 @@
 package fr.associationrdj.backend.back.article;
 
 import fr.associationrdj.backend.back.article.dto.ArticleDTOFindAll;
-import fr.associationrdj.backend.back.article.dto.ArticleDTOThreeLastArticle;
+import fr.associationrdj.backend.back.article.dto.ArticleDTOTwoLastArticle;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,8 +35,8 @@ public class ArticleController {
     public Article updateById(@PathVariable("id") Long id, @RequestBody Article article){
         return articleService.updateById(id, article);
     }
-    @GetMapping("/threelastarticles")
-    public List<ArticleDTOThreeLastArticle> threeLastArticles(){
-        return articleService.threeLastArticle();
+    @GetMapping("/twolastarticles")
+    public List<ArticleDTOTwoLastArticle> threeLastArticles(){
+        return articleService.twoLastArticle();
     }
 }

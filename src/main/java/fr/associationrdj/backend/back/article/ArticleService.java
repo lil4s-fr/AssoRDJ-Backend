@@ -2,7 +2,7 @@ package fr.associationrdj.backend.back.article;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.associationrdj.backend.back.article.dto.ArticleDTOFindAll;
-import fr.associationrdj.backend.back.article.dto.ArticleDTOThreeLastArticle;
+import fr.associationrdj.backend.back.article.dto.ArticleDTOTwoLastArticle;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -76,17 +76,17 @@ public class ArticleService {
         return articleRepository.save(articleActuel);
     }
     /**
-     * Retourne les trois derniers articles.
-     * @return la liste des trois derniers articles
+     * Retourne les deux derniers articles.
+     * @return la liste des deux derniers articles
      */
-    public List<ArticleDTOThreeLastArticle> threeLastArticle() {
+    public List<ArticleDTOTwoLastArticle> twoLastArticle() {
         List<Article> articles = articleRepository.findAll();
-        List<ArticleDTOThreeLastArticle> articleActuel= articles.stream().map(article -> objectMapper.convertValue(article, ArticleDTOThreeLastArticle.class)).toList();
-        List<ArticleDTOThreeLastArticle> articleThreeLast = new ArrayList<>();
+        List<ArticleDTOTwoLastArticle> articleActuel= articles.stream().map(article -> objectMapper.convertValue(article, ArticleDTOTwoLastArticle.class)).toList();
+        List<ArticleDTOTwoLastArticle> articleTwoLast = new ArrayList<>();
 
-        for (int i = articleActuel.size()-1; i > articleActuel.size() - 4 ; i--) {
-            articleThreeLast.add(articleActuel.get(i));
+        for (int i = articleActuel.size()-1; i > articleActuel.size() - 3 ; i--) {
+            articleTwoLast.add(articleActuel.get(i));
         }
-        return articleThreeLast;
+        return articleTwoLast;
     }
 }
