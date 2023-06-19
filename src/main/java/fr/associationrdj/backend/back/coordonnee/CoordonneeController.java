@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/coordonnees")
 public class CoordonneeController {
@@ -26,9 +26,9 @@ public class CoordonneeController {
     public Coordonnee save (@RequestBody Coordonnee coordonnee){
         return coordonneeService.save(coordonnee);
     }
-    @PutMapping("/update")
-    public Coordonnee update(@RequestBody Coordonnee coordonnee){
-        return coordonneeService.update(coordonnee);
+    @PutMapping("/{id}")
+    public Coordonnee updateById(@PathVariable("id")Long id, @RequestBody Coordonnee coordonnee){
+        return coordonneeService.updateById(id, coordonnee);
     }
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){

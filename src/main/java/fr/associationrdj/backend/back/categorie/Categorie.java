@@ -16,11 +16,7 @@ public class Categorie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToMany
-    @JoinTable(
-        name = "categorie_reservation",
-        joinColumns = @JoinColumn(name = "categorie_id"),
-        inverseJoinColumns = @JoinColumn(name = "reservation_id"))
+    @OneToMany
     private List<Reservation> reservations;
     private String nom;
     private String description;

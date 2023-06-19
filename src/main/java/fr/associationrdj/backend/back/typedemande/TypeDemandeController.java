@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Permission;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/typedemandes")
 public class TypeDemandeController {
@@ -33,9 +33,9 @@ public class TypeDemandeController {
     public void deleteById(@PathVariable("id")Long id){
         typeDemandeService.deleteById(id);
     }
-    @PutMapping("/update")
-    public TypeDemande update(@RequestBody TypeDemande typeDemande){
-        return typeDemandeService.update(typeDemande);
+    @PutMapping("/{id}")
+    public TypeDemande updateById(@PathVariable("id")Long id, @RequestBody TypeDemande typeDemande){
+        return typeDemandeService.updateById(id, typeDemande);
     }
 
 }

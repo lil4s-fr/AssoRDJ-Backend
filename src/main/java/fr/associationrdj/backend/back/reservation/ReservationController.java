@@ -1,9 +1,11 @@
 package fr.associationrdj.backend.back.reservation;
 
+import fr.associationrdj.backend.back.reservation.dto.ReservationDTOFindAll;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/reservations")
 public class ReservationController {
@@ -13,7 +15,7 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
     @GetMapping("")
-    public List<Reservation> findAll(){
+    public List<ReservationDTOFindAll> findAll(){
         return reservationService.findAll();
     }
     @GetMapping("/{id}")
@@ -28,8 +30,8 @@ public class ReservationController {
     public void deleteById(@PathVariable("id")Long id){
         reservationService.deleteById(id);
     }
-    @PutMapping("/update")
-    public Reservation update(@RequestBody Reservation reservation){
-        return reservationService.update(reservation);
+    @PutMapping("/{id}")
+    public Reservation updateById(@PathVariable("id")Long id, @RequestBody Reservation reservation){
+        return reservationService.updateById(id, reservation);
     }
 }

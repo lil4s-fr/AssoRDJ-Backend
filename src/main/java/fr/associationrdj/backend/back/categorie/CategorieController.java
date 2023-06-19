@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/categories")
 public class CategorieController {
@@ -28,8 +29,8 @@ public class CategorieController {
     public void deleteById(@PathVariable Long id){
         categorieService.deleteById(id);
     }
-    @PutMapping("/update")
-    public Categorie update(Categorie categorie){
-        return categorieService.update(categorie);
+    @PutMapping("/{id}")
+    public Categorie updateById(@PathVariable("id")Long id, @RequestBody Categorie categorie){
+        return categorieService.updateById(id, categorie);
     }
 }

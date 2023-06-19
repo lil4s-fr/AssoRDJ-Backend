@@ -1,9 +1,12 @@
 package fr.associationrdj.backend.back.article;
 
+import fr.associationrdj.backend.back.article.dto.ArticleDTOFindAll;
+import fr.associationrdj.backend.back.article.dto.ArticleDTOTwoLastArticle;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/articles")
 public class ArticleController {
@@ -13,7 +16,7 @@ public class ArticleController {
         this.articleService = articleService;
     }
     @GetMapping("")
-    public List<Article> findAll(){
+    public List<ArticleDTOFindAll> findAll(){
         return articleService.findAll();
     }
     @GetMapping("/{id}")
@@ -28,8 +31,12 @@ public class ArticleController {
     public void deleteById(@PathVariable("id") Long id){
         articleService.deleteByid(id);
     }
-    @PutMapping("/update")
-    public Article update(@RequestBody Article article){
-        return articleService.update(article);
+    @PutMapping("/{id}")
+    public Article updateById(@PathVariable("id") Long id, @RequestBody Article article){
+        return articleService.updateById(id, article);
+    }
+    @GetMapping("/twolastarticles")
+    public List<ArticleDTOTwoLastArticle> threeLastArticles(){
+        return articleService.twoLastArticle();
     }
 }

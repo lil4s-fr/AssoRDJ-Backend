@@ -1,10 +1,13 @@
 package fr.associationrdj.backend.back.evenement;
 
+import fr.associationrdj.backend.back.evenement.dto.EvenementDTOFindAll;
+import fr.associationrdj.backend.back.evenement.dto.EvenementDTONextEvents;
+import fr.associationrdj.backend.back.evenement.dto.EvenementDTONextTwoEvents;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/evenements")
 public class EvenementController {
@@ -15,7 +18,7 @@ public class EvenementController {
         this.evenementService = evenementService;
     }
     @GetMapping("")
-    public List<Evenement> findAll(){
+    public List<EvenementDTOFindAll> findAll(){
         return evenementService.findAll();
     }
     @GetMapping("/{id}")
@@ -26,13 +29,19 @@ public class EvenementController {
     public Evenement save(@RequestBody Evenement evenement){
         return evenementService.save(evenement);
     }
-    @PutMapping("/update")
-    public Evenement update(@RequestBody Evenement utilisateur){
-        return evenementService.update(utilisateur);
+    @PutMapping("/{id}")
+    public Evenement updateById(@PathVariable("id")Long id, @RequestBody Evenement utilisateur){
+        return evenementService.updateById(id, utilisateur);
     }
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){
         evenementService.deleteById(id);
     }
+    @GetMapping("/postlocaldate")
+    public List<EvenementDTONextEvents> findAllPostLocalDate(){
+        return evenementService.findAllPostLocalDate();
+    }
+    @GetMapping("/twonextevents")
+    public List<EvenementDTONextTwoEvents> findTwoNextEvents(){ return evenementService.findTwoNextEvents();}
 
 }

@@ -1,10 +1,12 @@
 package fr.associationrdj.backend.back.salle;
 
+import fr.associationrdj.backend.back.salle.dto.SalleDTOFindAll;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/salles")
 public class SalleController {
@@ -14,7 +16,7 @@ public class SalleController {
         this.salleService = salleService;
     }
     @GetMapping("")
-    public List<Salle> findAll(){
+    public List<SalleDTOFindAll> findAll(){
         return salleService.findAll();
     }
     @GetMapping("/{id}")
@@ -29,8 +31,8 @@ public class SalleController {
     public void deleteById(@PathVariable("id") Long id){
         salleService.deleteById(id);
     }
-    @PutMapping("/update")
-    public Salle update(@RequestBody Salle salle){
-        return salleService.update(salle);
+    @PutMapping("/{id}")
+    public Salle updateById(@PathVariable("id")Long id, @RequestBody Salle salle){
+        return salleService.updateById(id, salle);
     }
 }
