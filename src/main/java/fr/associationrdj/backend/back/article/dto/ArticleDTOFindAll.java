@@ -17,4 +17,5 @@ public class ArticleDTOFindAll {
     private LocalDate date_ecriture;
     private LocalDate date_modif;
     private List<Utilisateur> utilisateurs;
+    private String fichier;
 }

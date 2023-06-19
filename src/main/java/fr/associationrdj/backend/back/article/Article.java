@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.cglib.core.Local;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -34,9 +35,10 @@ public class Article {
     private List<Utilisateur> utilisateurs;
     private String titre;
     private String corps;
-    private LocalDate date_ecriture;
-    private LocalDate date_modif;
+    private LocalDate date_ecriture = LocalDate.now();
+    private LocalDate date_modif = LocalDate.now();
     private String like_dislike;//TODO
+    private String fichier;
 
 
 }

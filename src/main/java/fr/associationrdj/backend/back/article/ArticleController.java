@@ -2,8 +2,13 @@ package fr.associationrdj.backend.back.article;
 
 import fr.associationrdj.backend.back.article.dto.ArticleDTOFindAll;
 import fr.associationrdj.backend.back.article.dto.ArticleDTOTwoLastArticle;
+import fr.associationrdj.backend.back.article.dto.UUIDDto;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -26,6 +31,14 @@ public class ArticleController {
     @PostMapping("")
     public Article save(@RequestBody Article article){
         return articleService.save(article);
+    }
+    @PostMapping("/img")
+    public UUIDDto saveImage(@RequestParam("img") MultipartFile file)throws IOException{
+        return new UUIDDto(articleService.saveImage(file));
+    }
+    @GetMapping("/img/{id}")
+    public FileSystemResource getImage(@PathVariable("id") String id) {
+        return articleService.getImage(id);
     }
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){

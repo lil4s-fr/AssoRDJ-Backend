@@ -3,13 +3,18 @@ package fr.associationrdj.backend.back.article;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.associationrdj.backend.back.article.dto.ArticleDTOFindAll;
 import fr.associationrdj.backend.back.article.dto.ArticleDTOTwoLastArticle;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ArticleService {
@@ -71,7 +76,7 @@ public class ArticleService {
         articleActuel.setCorps(article.getCorps() == null ? articleActuel.getCorps() : article.getCorps());
         articleActuel.setCategories(article.getCategories() == null ? articleActuel.getCategories() : article.getCategories());
         articleActuel.setUtilisateurs(article.getUtilisateurs() == null ? articleActuel.getUtilisateurs() : article.getUtilisateurs());
-        articleActuel.setDate_modif(article.getDate_modif() == null ? articleActuel.getDate_modif() : article.getDate_modif());
+        articleActuel.setDate_modif(LocalDate.now());
         articleActuel.setLike_dislike(article.getLike_dislike() == null ? articleActuel.getLike_dislike() : article.getLike_dislike());
         return articleRepository.save(articleActuel);
     }
@@ -88,5 +93,16 @@ public class ArticleService {
             articleTwoLast.add(articleActuel.get(i));
         }
         return articleTwoLast;
+    }
+    public String saveImage(MultipartFile img) throws IOException {
+        UUID uuid = UUID.randomUUID();
+        String fileName = uuid.toString();
+        img.transferTo(Path.of("C:\\Projet RDJ\\AssoRDJ-Backend\\src\\main\\java\\fr\\associationrdj\\backend\\back\\article\\img" , fileName));
+
+        return fileName;
+    }
+
+    public FileSystemResource getImage(String id){
+        return new FileSystemResource(Path.of("C:\\Projet RDJ\\AssoRDJ-Backend\\src\\main\\java\\fr\\associationrdj\\backend\\back\\article\\img/",id));
     }
 }

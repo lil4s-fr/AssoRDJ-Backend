@@ -16,5 +16,6 @@ public class ArticleDTOTwoLastArticle {
     private LocalDate date_ecriture;
     private String corps;
     private LocalDate date_modif;
+    private String fichier;
     private String like_dislike;//TODO
 }
