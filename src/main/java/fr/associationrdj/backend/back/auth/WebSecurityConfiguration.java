@@ -19,6 +19,7 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
@@ -57,7 +58,21 @@ public class WebSecurityConfiguration {
         httpSecurity.csrf().disable();
         httpSecurity.authorizeHttpRequests(auth->{
                     auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/articles")).permitAll();
-                    auth.anyRequest().authenticated();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/articles/*")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/categories")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/categories/*")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/commentaires")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/commentaires/*")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/contacts")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/evenements")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/evenements/*")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/salles")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/salles/*")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/typedemandes")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/typedemandes/*")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/typedemandes")).permitAll();
+                    auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/typedemandes/*")).permitAll();
+            auth.anyRequest().authenticated();
                 });
         httpSecurity.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

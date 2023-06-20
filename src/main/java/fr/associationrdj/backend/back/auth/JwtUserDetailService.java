@@ -7,13 +7,17 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class JwtUserDetailService implements UserDetailsService {
 
     private UtilisateurRepository utilisateurRepository;
-
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     public JwtUserDetailService(UtilisateurRepository utilisateurRepository) {
         this.utilisateurRepository = utilisateurRepository;
     }
@@ -37,7 +41,7 @@ public class JwtUserDetailService implements UserDetailsService {
         utilisateur1.setNumeroAdherent(utilisateur.getNumeroAdherent());
         utilisateur1.setNumeroTelephone(utilisateur.getNumeroTelephone());
         utilisateur1.setPermission(utilisateur.getPermission());
-        utilisateur1.setHashMotDePasse();
+        utilisateur1.setHashMotDePasse(passwordEncoder.encode(utilisateur.getHashMotDePasse()));
 
         return utilisateurRepository.save(utilisateur);
     }

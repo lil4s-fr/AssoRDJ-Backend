@@ -57,7 +57,7 @@ public class PermissionService {
     public Permission updateById(Long id, Permission permission) {
         Permission permissionActuelle = permissionRepository.findById(id).orElseThrow(() -> new RuntimeException("Permission not found for id: " + id));
         permissionActuelle.setUtilisateurs(permission.getUtilisateurs() == null ? permissionActuelle.getUtilisateurs() : permission.getUtilisateurs());
-        permissionActuelle.setStatut(permission.getStatut() == null ? permissionActuelle.getStatut() : permission.getStatut());
+        permissionActuelle.setNom(permission.getNom() == null ? permissionActuelle.getNom() : permission.getNom());
         return permissionRepository.save(permissionActuelle);
     }
 
