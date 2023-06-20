@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Permission implements GrantedAuthority {
+public class Permission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,8 +22,4 @@ public class Permission implements GrantedAuthority {
     private List<Utilisateur> utilisateurs;
 
 
-    @Override
-    public String getAuthority() {
-        return nom;
-    }
 }

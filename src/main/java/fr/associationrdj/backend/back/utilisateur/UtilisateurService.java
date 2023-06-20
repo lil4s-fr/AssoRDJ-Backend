@@ -67,7 +67,7 @@ public class UtilisateurService {
         utilisateurActuel.setHashMotDePasse(utilisateur.getHashMotDePasse() == null ? utilisateurActuel.getHashMotDePasse() : utilisateur.getHashMotDePasse());
         utilisateurActuel.setCoordonnees(utilisateur.getCoordonnees() == null ? utilisateurActuel.getCoordonnees() : utilisateur.getCoordonnees());
         utilisateurActuel.setCategories(utilisateur.getCategories() == null ? utilisateurActuel.getCategories() : utilisateur.getCategories());
-        utilisateurActuel.setPermission(utilisateur.getPermission() == null ? utilisateurActuel.getPermission() : utilisateur.getPermission());
+        utilisateurActuel.setRoles(utilisateur.getRoles() == null ? utilisateurActuel.getRoles() : utilisateur.getRoles());
         return utilisateurRepository.save(utilisateurActuel);
     }
 
