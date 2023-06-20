@@ -32,3 +32,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+mon-dossier/*
+!mon-dossier/.gitkeep
