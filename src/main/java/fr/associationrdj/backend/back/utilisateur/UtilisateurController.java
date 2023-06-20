@@ -1,9 +1,13 @@
 package fr.associationrdj.backend.back.utilisateur;
 
+import fr.associationrdj.backend.back.article.dto.UUIDDto;
 import fr.associationrdj.backend.back.utilisateur.dto.UtilisateurDTOFindAll;
 import fr.associationrdj.backend.back.utilisateur.dto.UtilisateurDTOSansMDP;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -38,4 +42,12 @@ public class UtilisateurController {
         utilisateurService.deleteById(id);
     }
 
+    @PostMapping("/img")
+    public UUIDDto saveImage(@RequestParam("img") MultipartFile file)throws IOException {
+        return new UUIDDto(utilisateurService.saveImage(file));
+    }
+    @GetMapping("/img/{id}")
+    public FileSystemResource getImage(@PathVariable("id") String id) {
+        return utilisateurService.getImage(id);
+    }
 }

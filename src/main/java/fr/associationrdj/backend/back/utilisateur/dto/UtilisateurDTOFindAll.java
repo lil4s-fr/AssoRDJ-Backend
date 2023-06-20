@@ -9,5 +9,5 @@ public class UtilisateurDTOFindAll {
     private String prenom;
     private String pseudo;
     private String numeroAdherent;
-
+    private String fichier;
 }

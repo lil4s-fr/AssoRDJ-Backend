@@ -35,5 +35,6 @@ public class Utilisateur {
             joinColumns = @JoinColumn(name = "utilisateur_id"),
             inverseJoinColumns = @JoinColumn(name = "categorie_id"))
     private List<Categorie> categories;
+    private String fichier;
 
 }
