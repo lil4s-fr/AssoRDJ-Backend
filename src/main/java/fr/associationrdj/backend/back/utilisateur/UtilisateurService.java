@@ -3,11 +3,16 @@ package fr.associationrdj.backend.back.utilisateur;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.associationrdj.backend.back.utilisateur.dto.UtilisateurDTOFindAll;
 import fr.associationrdj.backend.back.utilisateur.dto.UtilisateurDTOSansMDP;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UtilisateurService {
@@ -79,5 +84,16 @@ public class UtilisateurService {
         utilisateurRepository.deleteById(id);
     }
 
+    public String saveImage(MultipartFile img) throws IOException {
+        UUID uuid = UUID.randomUUID();
+        String fileName = uuid.toString();
+        img.transferTo(Path.of("img" , fileName));
+
+        return fileName;
+    }
+
+    public FileSystemResource getImage(String id){
+        return new FileSystemResource(Path.of("img",id));
+    }
 
 }

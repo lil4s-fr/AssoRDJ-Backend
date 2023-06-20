@@ -20,5 +20,6 @@ public class UtilisateurDTOSansMDP {
     private List<Coordonnee> coordonnees;
     private Permission permission;
     private List<Categorie> categories;
+    private String fichier;
 
 }
