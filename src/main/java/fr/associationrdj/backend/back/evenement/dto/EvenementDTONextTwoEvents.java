@@ -17,4 +17,5 @@ public class EvenementDTONextTwoEvents {
     private Date dateFin;
     private String description;
     private String lieu;
+    private String fichier;
 }

@@ -6,13 +6,18 @@ import fr.associationrdj.backend.back.evenement.dto.EvenementDTONextEvents;
 
 import fr.associationrdj.backend.back.evenement.dto.EvenementDTONextTwoEvents;
 import jakarta.transaction.Transactional;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -133,4 +138,17 @@ public class EvenementService {
                 .map(evenement -> objectMapper.convertValue(evenement, EvenementDTONextTwoEvents.class))
                 .collect(Collectors.toList());
     }
+
+    public String saveImage(MultipartFile img) throws IOException {
+        UUID uuid = UUID.randomUUID();
+        String fileName = uuid.toString();
+        img.transferTo(Path.of("C:\\Projet RDJ\\AssoRDJ-Backend\\src\\main\\java\\fr\\associationrdj\\backend\\back\\evenement\\img" , fileName));
+
+        return fileName;
+    }
+
+    public FileSystemResource getImage(String id){
+        return new FileSystemResource(Path.of("C:\\Projet RDJ\\AssoRDJ-Backend\\src\\main\\java\\fr\\associationrdj\\backend\\back\\evenement\\img",id));
+    }
+
 }
