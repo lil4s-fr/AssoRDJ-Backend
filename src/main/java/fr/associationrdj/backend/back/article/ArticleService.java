@@ -97,12 +97,12 @@ public class ArticleService {
     public String saveImage(MultipartFile img) throws IOException {
         UUID uuid = UUID.randomUUID();
         String fileName = uuid.toString();
-        img.transferTo(Path.of("C:\\Projet RDJ\\AssoRDJ-Backend\\src\\main\\java\\fr\\associationrdj\\backend\\back\\article\\img" , fileName));
+        img.transferTo(Path.of("img" , fileName));
 
         return fileName;
     }
 
     public FileSystemResource getImage(String id){
-        return new FileSystemResource(Path.of("C:\\Projet RDJ\\AssoRDJ-Backend\\src\\main\\java\\fr\\associationrdj\\backend\\back\\article\\img/",id));
+        return new FileSystemResource(Path.of("img",id));
     }
 }

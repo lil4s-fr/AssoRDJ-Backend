@@ -20,5 +20,6 @@ public class EvenementDTOFindAll {
     private LocalDate dateFin;
     private String description;
     private String lieu;
+    private String fichier;
 }
 
