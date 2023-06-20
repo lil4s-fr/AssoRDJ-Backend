@@ -31,17 +31,7 @@ public class JwtUserDetailService implements UserDetailsService {
     }
 
     public Utilisateur save (Utilisateur utilisateur){
-        Utilisateur utilisateur1 = new Utilisateur();
-        utilisateur1.setPseudo(utilisateur.getPseudo());
-        utilisateur1.setNom(utilisateur.getNom());
-        utilisateur1.setCategories(utilisateur.getCategories());
-        utilisateur1.setEmail(utilisateur.getEmail());
-        utilisateur1.setCoordonnees(utilisateur.getCoordonnees());
-        utilisateur1.setPrenom(utilisateur.getPrenom());
-        utilisateur1.setNumeroAdherent(utilisateur.getNumeroAdherent());
-        utilisateur1.setNumeroTelephone(utilisateur.getNumeroTelephone());
-        utilisateur1.setPermission(utilisateur.getPermission());
-        utilisateur1.setHashMotDePasse(passwordEncoder.encode(utilisateur.getHashMotDePasse()));
+        utilisateur.setHashMotDePasse(passwordEncoder.encode(utilisateur.getHashMotDePasse()));
 
         return utilisateurRepository.save(utilisateur);
     }
